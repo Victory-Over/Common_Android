@@ -1,7 +1,10 @@
-package com.fanneng.common.net;
+package com.fanneng.common.config;
 
 import android.content.Intent;
 
+import com.fanneng.common.utils.AppContextUtils;
+import com.fanneng.common.utils.SpUtil;
+import com.fanneng.common.utils.ViewManager;
 
 
 /**
@@ -54,10 +57,8 @@ public class BaseAppConfig {
     this.clazz = clazz;
   }
 
-  public void gotoActivity( boolean isFinish) {
+  public void gotoActivity() {
     AppContextUtils.getContext().startActivity(new Intent(AppContextUtils.getActivity(), getClazz()));
-    if (isFinish) {
-      AppContextUtils.getActivity().finish();
-    }
+    ViewManager.getInstance().finishAllActivity();
   }
 }

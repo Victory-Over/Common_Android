@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.fanneng.common.R;
+import com.fanneng.common.config.BaseAppConfig;
 import com.fanneng.common.utils.CustomProgressDialogUtils;
 import com.fanneng.common.utils.SpUtil;
 import com.fanneng.common.utils.ToastUtils;
@@ -64,7 +65,7 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
       }
     } else if (response.getTokenInvalid() == response.getCode()) {
       SpUtil.removeAll();
-      BaseAppConfig.getInstance().gotoActivity(true);
+      BaseAppConfig.getInstance().gotoActivity();
     } else {
       try {
         onFailing(response);

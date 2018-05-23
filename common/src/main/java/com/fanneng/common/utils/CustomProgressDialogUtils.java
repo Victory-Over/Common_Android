@@ -3,6 +3,7 @@ package com.fanneng.common.utils;
 import android.content.Context;
 
 import com.fanneng.common.R;
+import com.fanneng.common.customview.CustomProgressDialog;
 
 
 /**

@@ -4,7 +4,6 @@ package com.fanneng.common.net;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import com.fanneng.common.config.BaseAppConfig;
 import com.fanneng.common.net.interceptor.HttpCacheInterceptor;
 import com.fanneng.common.net.interceptor.HttpHeaderInterceptor;
 import com.fanneng.common.net.interceptor.LoggingInterceptor;
@@ -37,8 +36,8 @@ public class RetrofitFactory {
     Cache cache = new Cache(cacheFile, 1024 * 1024 * 100);
 
     OkHttpClient httpClient = new OkHttpClient().newBuilder()
-        .readTimeout(BaseAppConfig.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-        .connectTimeout(BaseAppConfig.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+        .readTimeout(ApiConfig.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+        .connectTimeout(ApiConfig.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         .addInterceptor(LoggingInterceptor.getLoggingInterceptor())
         .addInterceptor(new HttpHeaderInterceptor())
         .addNetworkInterceptor(new HttpCacheInterceptor())
@@ -51,7 +50,7 @@ public class RetrofitFactory {
         .client(httpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .baseUrl(BaseAppConfig.getInstance().getServerUrl())
+        .baseUrl(ApiConfig.getInstance().getServerUrl())
         .build();
 
   }

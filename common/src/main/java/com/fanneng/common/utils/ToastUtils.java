@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.fanneng.common.config.BaseApplication;
+import com.fanneng.common.base.BaseApplication;
 import io.reactivex.annotations.NonNull;
 
 

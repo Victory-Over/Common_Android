@@ -1,6 +1,6 @@
 package com.fanneng.common.net.interceptor;
 
-import com.fanneng.common.config.BaseAppConfig;
+import com.fanneng.common.net.ApiConfig;
 
 import java.io.IOException;
 
@@ -20,7 +20,7 @@ public class HttpHeaderInterceptor implements Interceptor {
     Request originalRequest = chain.request();
     Request authorised = originalRequest.newBuilder()
         .header("Content-type", "application/json")
-        .addHeader("token", BaseAppConfig.getInstance().getAppToken())
+        .addHeader("token", ApiConfig.getInstance().getAppToken())
         .removeHeader("Pragma").build();
     return chain.proceed(authorised);
   }

@@ -8,15 +8,6 @@ import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 
 import java.lang.reflect.Method;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.Enumeration;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 /**
  * 作者：王文彬 on 2017/12/3 12：00
@@ -74,33 +65,6 @@ public class NetworkUtils {
   public static boolean isConnected() {
     NetworkInfo info = getActiveNetworkInfo();
     return info != null && info.isConnected();
-  }
-
-  /**
-   * 判断网络是否可用
-   * <p>需添加权限 {@code <uses-permission android:name="android.permission.INTERNET"/>}</p>
-   *
-   * @return {@code true}: 可用<br>{@code false}: 不可用
-   */
-  public static boolean isAvailableByPing() {
-    ShellUtils.CommandResult result = ShellUtils.execCmd("ping -c 1 -w 1 223.5.5.5", false);
-    boolean ret = result.result == 0;
-    if (result.errorMsg != null) {
-      LogUtils.d("isAvailableByPing errorMsg", result.errorMsg);
-    }
-    if (result.successMsg != null) {
-      LogUtils.d("isAvailableByPing successMsg", result.successMsg);
-    }
-    return ret;
-  }
-
-  /**
-   * 判断网络是否连接后是否可用
-   *
-   * @return {@code true}: 是<br>{@code false}: 否
-   */
-  public static boolean isAvailableConnected() {
-    return isConnected() && isAvailableByPing();
   }
 
   /**
@@ -196,17 +160,6 @@ public class NetworkUtils {
   }
 
   /**
-   * 判断wifi数据是否可用
-   * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>}</p>
-   * <p>需添加权限 {@code <uses-permission android:name="android.permission.INTERNET"/>}</p>
-   *
-   * @return {@code true}: 是<br>{@code false}: 否
-   */
-  public static boolean isWifiAvailable() {
-    return getWifiEnabled() && isAvailableByPing();
-  }
-
-  /**
    * 获取网络运营商名称
    * <p>中国移动、如中国联通、中国电信</p>
    *
@@ -284,69 +237,4 @@ public class NetworkUtils {
     return netType;
   }
 
-  /**
-   * 获取IP地址
-   * <p>需添加权限 {@code <uses-permission android:name="android.permission.INTERNET"/>}</p>
-   *
-   * @param useIPv4 是否用IPv4
-   * @return IP地址
-   */
-  public static String getIPAddress(boolean useIPv4) {
-    try {
-      for (Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces(); nis.hasMoreElements(); ) {
-        NetworkInterface ni = nis.nextElement();
-        // 防止小米手机返回10.0.2.15
-        if (!ni.isUp()) {
-          continue;
-        }
-        for (Enumeration<InetAddress> addresses = ni.getInetAddresses(); addresses.hasMoreElements(); ) {
-          InetAddress inetAddress = addresses.nextElement();
-          if (!inetAddress.isLoopbackAddress()) {
-            String hostAddress = inetAddress.getHostAddress();
-            boolean isIPv4 = hostAddress.indexOf(':') < 0;
-            if (useIPv4) {
-              if (isIPv4) {
-                return hostAddress;
-              }
-            } else {
-              if (!isIPv4) {
-                int index = hostAddress.indexOf('%');
-                return index < 0 ? hostAddress.toUpperCase() : hostAddress.substring(0, index).toUpperCase();
-              }
-            }
-          }
-        }
-      }
-    } catch (SocketException e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
-
-  /**
-   * 获取域名ip地址
-   * <p>需添加权限 {@code <uses-permission android:name="android.permission.INTERNET"/>}</p>
-   *
-   * @param domain 域名
-   * @return ip地址
-   */
-  public static String getDomainAddress(final String domain) {
-    try {
-      ExecutorService exec = Executors.newCachedThreadPool();
-      Future<String> fs = exec.submit(() -> {
-        InetAddress inetAddress;
-        try {
-          inetAddress = InetAddress.getByName(domain);
-          return inetAddress.getHostAddress();
-        } catch (UnknownHostException e) {
-          e.printStackTrace();
-        }
-        return null;
-      });
-      return fs.get();
-    } catch (InterruptedException | ExecutionException e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
 }

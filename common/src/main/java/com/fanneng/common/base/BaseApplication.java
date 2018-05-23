@@ -1,8 +1,10 @@
-package com.fanneng.common.config;
+package com.fanneng.common.base;
 
 import android.app.Application;
 import android.os.Handler;
 import android.os.Process;
+
+import com.fanneng.common.net.ApiConfig;
 import com.fanneng.common.utils.AppContextUtils;
 
 /**
@@ -23,7 +25,7 @@ public abstract class BaseApplication extends Application {
     AppContextUtils.init(this);
     mMainThreadId = Process.myPid();
     mMainThreadHandler = new Handler();
-    BaseAppConfig.getInstance().setServerUrl(setBaseUrl());
+    ApiConfig.getInstance().setServerUrl(setBaseUrl());
   }
 
   public static BaseApplication getApplication() {

@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Stack;
 
 /**
+ * @author luyufeng
  * Activity和Fragment管理
- * @name ViewManager
  */
 public class ViewManager {
 

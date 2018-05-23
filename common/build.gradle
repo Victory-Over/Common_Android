@@ -1,5 +1,14 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: LOCAL_REPO_URL)
+        pom.groupId = GROUP
+        pom.artifactId = POM_ARTIFACT_ID
+        pom.version = VERSION
+    }
+}
 android {
     compileSdkVersion 26
 

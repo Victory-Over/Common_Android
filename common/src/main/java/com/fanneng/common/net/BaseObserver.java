@@ -99,31 +99,31 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
   private void onException(ExceptionReason reason) {
     switch (reason) {
       case CONNECT_ERROR:
-        ToastUtils.showToastSafe(R.string.connect_error, Toast.LENGTH_SHORT);
+        ToastUtils.show(R.string.connect_error, Toast.LENGTH_SHORT);
         break;
 
       case CONNECT_TIMEOUT:
-        ToastUtils.showToastSafe(R.string.connect_timeout, Toast.LENGTH_SHORT);
+        ToastUtils.show(R.string.connect_timeout, Toast.LENGTH_SHORT);
         break;
 
       case BAD_NETWORK:
-        ToastUtils.showToastSafe(R.string.bad_network, Toast.LENGTH_SHORT);
+        ToastUtils.show(R.string.bad_network, Toast.LENGTH_SHORT);
         break;
 
       case PARSE_ERROR:
-        ToastUtils.showToastSafe(R.string.parse_error, Toast.LENGTH_SHORT);
+        ToastUtils.show(R.string.parse_error, Toast.LENGTH_SHORT);
         break;
 
       case UNKNOWN_ERROR:
       default:
-        ToastUtils.showToastSafe(R.string.unknown_error, Toast.LENGTH_SHORT);
+        ToastUtils.show(R.string.unknown_error, Toast.LENGTH_SHORT);
         break;
     }
   }
 
   @Override
   public void onComplete() {
-
+    onRequestEnd();
   }
 
   /**
@@ -141,9 +141,9 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
   public void onFailing(T response) {
     String message = response.getMsg();
     if (TextUtils.isEmpty(message)) {
-      ToastUtils.showToastSafe(R.string.response_return_error);
+      ToastUtils.show(R.string.response_return_error);
     } else {
-      ToastUtils.showToastSafe(message);
+      ToastUtils.show(message);
     }
   }
 

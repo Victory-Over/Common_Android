@@ -2,6 +2,7 @@ package com.fanneng.common.base;
 
 import android.app.Application;
 
+import com.fanneng.common.utils.CrashHandlerUtils;
 import com.fanneng.common.net.ApiConfig;
 import com.fanneng.common.utils.AppContextUtils;
 
@@ -12,20 +13,15 @@ import com.fanneng.common.utils.AppContextUtils;
  */
 public abstract class CommonApplication extends Application {
 
-  private static CommonApplication application = null;
-
 
   @Override
   public void onCreate() {
     super.onCreate();
-    application = this;
     AppContextUtils.init(this);
+    CrashHandlerUtils.getInstance().init(this);
     ApiConfig.getInstance().setServerUrl(setBaseUrl());
   }
 
-  public static CommonApplication getApplication() {
-    return application;
-  }
 
   /**
    * 在子类初始化application的时候，必须重写该防范然后获取到BaseUrl

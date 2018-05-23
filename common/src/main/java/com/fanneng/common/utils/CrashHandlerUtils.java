@@ -1,4 +1,4 @@
-package com.fanneng.common.caught;
+package com.fanneng.common.utils;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -10,9 +10,6 @@ import android.os.Looper;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.fanneng.common.utils.DateUtils;
-import com.fanneng.common.utils.FileUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,14 +33,14 @@ import java.util.Map;
  * 在Application中初始化
  * CrashHandler.getInstance().init(this);
  */
-public class CrashHandler implements UncaughtExceptionHandler {
+public class CrashHandlerUtils implements UncaughtExceptionHandler {
 
     public static String TAG = "CrashHandler";
     public static final String FILE_FORMAT = "yyyy-MM-dd_HH-mm-ss-sss";
     //系统默认的UncaughtException处理类
     private UncaughtExceptionHandler mDefaultHandler;
 
-    private static CrashHandler instance = new CrashHandler();
+    private static CrashHandlerUtils instance = new CrashHandlerUtils();
     private Context mContext;
 
     private int autoClearDay = 5;
@@ -52,11 +49,11 @@ public class CrashHandler implements UncaughtExceptionHandler {
     private Map<String, String> infos = new HashMap<>();
 
     /** 保证只有一个CrashHandler实例 */
-    private CrashHandler() {
+    private CrashHandlerUtils() {
     }
 
     /** 获取CrashHandler实例 ,单例模式 */
-    public static CrashHandler getInstance() {
+    public static CrashHandlerUtils getInstance() {
         return instance;
     }
 

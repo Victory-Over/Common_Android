@@ -1,15 +1,16 @@
 package com.fanneng.common.net;
 
+import com.google.gson.JsonParseException;
+
 import android.app.Activity;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.fanneng.common.R;
 import com.fanneng.common.utils.CustomProgressDialogUtils;
-import com.fanneng.common.utils.SpUtil;
 import com.fanneng.common.utils.ToastUtils;
-import com.google.gson.JsonParseException;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 
 import java.io.InterruptedIOException;
@@ -22,7 +23,9 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * @author ：王文彬 on 2018/5/22 13：52
- * @describe：网络状态的封装
+ * @describe： 网络状态的封装类，子类初始化该类后，必须重写onSuccess(response)方法，可以选择性的重写onFailing(response)
+ * 方法，如果子类使用super方法，那么会按照统一的方法进行{@link ToastUtils}，如果不使用则根据返回的response自行进行操作，如果选择重写onError(Throwable e)
+ * 方法，如果子类使用super方法，那么会按照统一的方法进行{@link ToastUtils}，如果不使用则不会{@link ToastUtils}，但是您可以做自己的操作
  * @email：wwb199055@126.com
  */
 public abstract class BaseObserver<T extends BaseResponseEntity> implements Observer<T> {
@@ -31,12 +34,13 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
   private Activity mContext;
   private boolean mShowLoading = false;
   private CustomProgressDialogUtils progressDialogUtils;
+  private static final String TOKEN_INVALID_TAG = "token_invalid";
 
   public BaseObserver() {
   }
 
   /**
-   * 主要用来显示Dialog
+   * 如果传入上下文，那么表示您将开启自定义的进度条
    *
    * @param context 上下文
    */
@@ -62,8 +66,7 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
         e.printStackTrace();
       }
     } else if (response.getTokenInvalid() == response.getCode()) {
-      SpUtil.removeAll();
-      ApiConfig.getInstance().gotoActivity();
+      EventBus.getDefault().post(new EventBusMsg<>(TOKEN_INVALID_TAG));
     } else {
       try {
         onFailing(response);
@@ -98,31 +101,31 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
   private void onException(ExceptionReason reason) {
     switch (reason) {
       case CONNECT_ERROR:
-        ToastUtils.showToastSafe(R.string.connect_error, Toast.LENGTH_SHORT);
+        ToastUtils.show(R.string.connect_error, Toast.LENGTH_SHORT);
         break;
 
       case CONNECT_TIMEOUT:
-        ToastUtils.showToastSafe(R.string.connect_timeout, Toast.LENGTH_SHORT);
+        ToastUtils.show(R.string.connect_timeout, Toast.LENGTH_SHORT);
         break;
 
       case BAD_NETWORK:
-        ToastUtils.showToastSafe(R.string.bad_network, Toast.LENGTH_SHORT);
+        ToastUtils.show(R.string.bad_network, Toast.LENGTH_SHORT);
         break;
 
       case PARSE_ERROR:
-        ToastUtils.showToastSafe(R.string.parse_error, Toast.LENGTH_SHORT);
+        ToastUtils.show(R.string.parse_error, Toast.LENGTH_SHORT);
         break;
 
       case UNKNOWN_ERROR:
       default:
-        ToastUtils.showToastSafe(R.string.unknown_error, Toast.LENGTH_SHORT);
+        ToastUtils.show(R.string.unknown_error, Toast.LENGTH_SHORT);
         break;
     }
   }
 
   @Override
   public void onComplete() {
-
+    onRequestEnd();
   }
 
   /**
@@ -140,9 +143,9 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
   public void onFailing(T response) {
     String message = response.getMsg();
     if (TextUtils.isEmpty(message)) {
-      ToastUtils.showToastSafe(R.string.response_return_error);
+      ToastUtils.show(R.string.response_return_error);
     } else {
-      ToastUtils.showToastSafe(message);
+      ToastUtils.show(message);
     }
   }
 

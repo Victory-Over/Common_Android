@@ -1,6 +1,6 @@
 package com.fanneng.common.utils;
 
-import android.content.Context;
+
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.util.Log;
@@ -11,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.text.DecimalFormat;
@@ -155,8 +154,6 @@ public class FileUtils {
         // 是一个绝对路径文件
         if (path.startsWith("/")) {
             file = new File(path);
-        } else {
-            //file = new File(ConstUtil.FileRootPath + path);
         }
 
         if (file.exists()) { // 文件存在删掉存在文件
@@ -267,6 +264,8 @@ public class FileUtils {
 
 
     /**
+<<<<<<< HEAD
+=======
      * 获取文件的真实后缀名。目前只支持JPG, GIF, PNG, BMP四种图片文件。
      *
      * @param bytes 文件字节流
@@ -316,6 +315,7 @@ public class FileUtils {
     }
 
     /**
+>>>>>>> 856017946d3538c2aa213b2581dffa8e86801285
      * 文件重命名
      *
      * @param oldname 原来的文件名

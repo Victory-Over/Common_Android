@@ -1,4 +1,4 @@
-package net;
+package com.fanneng.common.net;
 
 /**
  * @author ：王文彬 on 2018/5/22 13：30

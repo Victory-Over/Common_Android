@@ -1,12 +1,10 @@
-package config;
+package com.fanneng.common.config;
 
 import android.app.Application;
 import android.os.Handler;
 import android.os.Process;
 
-import net.BaseAppConfig;
 
-import utils.AppContextUtils;
 
 /**
  * @author ：王文彬 on 2018/5/22 14：35

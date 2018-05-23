@@ -1,4 +1,4 @@
-package net;
+package com.fanneng.common.net;
 
 import com.google.gson.JsonParseException;
 
@@ -7,6 +7,9 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.fanneng.common.R;
+import com.fanneng.common.utils.CustomProgressDialogUtils;
+import com.fanneng.common.utils.SpUtil;
+import com.fanneng.common.utils.ToastUtils;
 
 import org.json.JSONException;
 
@@ -17,9 +20,6 @@ import java.text.ParseException;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import utils.CustomProgressDialogUtils;
-import utils.SpUtil;
-import utils.ToastUtils;
 
 /**
  * @author ：王文彬 on 2018/5/22 13：52

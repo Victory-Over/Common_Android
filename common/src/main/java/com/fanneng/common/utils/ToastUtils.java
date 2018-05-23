@@ -1,10 +1,10 @@
-package utils;
+package com.fanneng.common.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
 
-import config.BaseApplication;
+import com.fanneng.common.config.BaseApplication;
 import io.reactivex.annotations.NonNull;
 
 

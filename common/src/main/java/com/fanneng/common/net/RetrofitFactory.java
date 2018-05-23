@@ -1,4 +1,4 @@
-package net;
+package com.fanneng.common.net;
 
 
 import com.google.gson.Gson;
@@ -20,9 +20,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import utils.AppContextUtils;
-import utils.LogUtils;
-import utils.NetworkUtils;
+import com.fanneng.common.utils.AppContextUtils;
+import com.fanneng.common.utils.LogUtils;
+import com.fanneng.common.utils.NetworkUtils;
 
 /**
  * describe：Retrofit+RxJava网络请求封装

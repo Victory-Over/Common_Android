@@ -249,7 +249,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
                 @Override
                 public boolean accept(File file, String filename) {
                     DateFormat formatter = new SimpleDateFormat(FILE_FORMAT);
-                    String time = formatter.format(DateUtils.getDateOffset(new Date(), -Math.abs(autoClearDay)));
+                    String time = formatter.format(DateUtils.addDay(new Date(), -Math.abs(autoClearDay)));
                     String date = "crash-" + time + ".log";
                     return date.compareTo(filename) > 0;
                 }

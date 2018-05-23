@@ -46,7 +46,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
     private static CrashHandler instance = new CrashHandler();
     private Context mContext;
 
-    private int autoClearDay;
+    private int autoClearDay = 5;
 
     // 用来存储设备信息和异常信息
     private Map<String, String> infos = new HashMap<>();

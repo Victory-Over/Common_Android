@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
-import com.fanneng.common.base.BaseFragment;
+import com.fanneng.common.base.CommonFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.Stack;
 public class ViewManager {
 
     private static Stack<Activity> activityStack;
-    private static List<BaseFragment> fragmentList;
+    private static List<CommonFragment> fragmentList;
 
     public static ViewManager getInstance() {
         return ViewManagerHolder.sInstance;
@@ -31,7 +31,7 @@ public class ViewManager {
     private ViewManager() {
     }
 
-    public void addFragment(int index, BaseFragment fragment) {
+    public void addFragment(int index, CommonFragment fragment) {
         if (fragmentList == null) {
             fragmentList = new ArrayList<>();
         }
@@ -39,7 +39,7 @@ public class ViewManager {
     }
 
 
-    public BaseFragment getFragment(int index) {
+    public CommonFragment getFragment(int index) {
         if (fragmentList != null) {
             return fragmentList.get(index);
         }
@@ -47,7 +47,7 @@ public class ViewManager {
     }
 
 
-    public List<BaseFragment> getAllFragment() {
+    public List<CommonFragment> getAllFragment() {
         if (fragmentList != null) {
             return fragmentList;
         }

@@ -1,10 +1,6 @@
 package com.fanneng.common.net;
 
-import android.content.Intent;
-
-import com.fanneng.common.utils.AppContextUtils;
 import com.fanneng.common.utils.SpUtil;
-import com.fanneng.common.utils.ViewManager;
 
 
 /**
@@ -51,18 +47,5 @@ public class ApiConfig {
         return SpUtil.getString(APP_TOKEN);
     }
 
-    private Class<?> clazz = null;
 
-    public Class<?> getClazz() {
-        return clazz;
-    }
-
-    public void setClazz(Class<?> clazz) {
-        this.clazz = clazz;
-    }
-
-    public void gotoActivity() {
-        AppContextUtils.getContext().startActivity(new Intent(AppContextUtils.getActivity(), getClazz()));
-        ViewManager.getInstance().finishAllActivity();
-    }
 }

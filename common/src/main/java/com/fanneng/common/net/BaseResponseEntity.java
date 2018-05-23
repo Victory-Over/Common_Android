@@ -1,11 +1,13 @@
 package com.fanneng.common.net;
 
+import java.io.Serializable;
+
 /**
  * @author ：王文彬 on 2018/5/22 13：37
  * @describe：网络请求返回值
  * @email：wwb199055@126.com
  */
-public class BaseResponseEntity {
+public class BaseResponseEntity implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

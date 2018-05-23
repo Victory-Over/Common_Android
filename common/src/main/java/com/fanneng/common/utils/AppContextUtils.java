@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 
 /**
- * describe：app级别的上下文
+ * describe：app的上下文
  * author ：王文彬 on 2018/5/22 11：21
  * email：wwb199055@126.com
  */
@@ -22,7 +22,7 @@ public class AppContextUtils {
   }
 
   /**
-   * 初始化工具类
+   * 在Application中进行初始化
    *
    * @param context 上下文
    */
@@ -31,7 +31,7 @@ public class AppContextUtils {
   }
 
   /**
-   * 初始化工具类
+   * 在CommonActivity中进行初始化
    *
    * @param act 上下文
    */

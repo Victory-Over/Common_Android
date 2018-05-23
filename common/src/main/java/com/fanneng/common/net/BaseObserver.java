@@ -23,7 +23,9 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * @author ：王文彬 on 2018/5/22 13：52
- * @describe：网络状态的封装
+ * @describe： 网络状态的封装类，子类初始化该类后，必须重写onSuccess(response)方法，可以选择性的重写onFailing(response)
+ * 方法，如果子类使用super方法，那么会按照统一的方法进行{@link ToastUtils}，如果不使用则根据返回的response自行进行操作，如果选择重写onError(Throwable e)
+ * 方法，如果子类使用super方法，那么会按照统一的方法进行{@link ToastUtils}，如果不使用则不会{@link ToastUtils}，但是您可以做自己的操作
  * @email：wwb199055@126.com
  */
 public abstract class BaseObserver<T extends BaseResponseEntity> implements Observer<T> {
@@ -38,7 +40,7 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
   }
 
   /**
-   * 主要用来显示Dialog
+   * 如果传入上下文，那么表示您将开启自定义的进度条
    *
    * @param context 上下文
    */

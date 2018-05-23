@@ -134,7 +134,7 @@ public class ViewManager {
             activityManager.killBackgroundProcesses(context.getPackageName());
             //System.exit(0);
         } catch (Exception e) {
-            Log.e("ActivityManager", "app exit" + e.getMessage());
+            LogUtils.e("ActivityManager", "app exit" + e.getMessage());
         }
     }
 }

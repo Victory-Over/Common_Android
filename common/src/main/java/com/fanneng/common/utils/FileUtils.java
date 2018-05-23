@@ -1,6 +1,5 @@
 package com.fanneng.common.utils;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.util.Log;
@@ -11,7 +10,6 @@ import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.text.DecimalFormat;
@@ -155,8 +153,6 @@ public class FileUtils {
         // 是一个绝对路径文件
         if (path.startsWith("/")) {
             file = new File(path);
-        } else {
-            //file = new File(ConstUtil.FileRootPath + path);
         }
 
         if (file.exists()) { // 文件存在删掉存在文件
@@ -265,55 +261,6 @@ public class FileUtils {
         return (i > 0 ? (i + 1) == leg ? "" : path.substring(i + 1, path.length()) : " ");
     }
 
-
-    /**
-     * 获取文件的真实后缀名。目前只支持JPG, GIF, PNG, BMP四种图片文件。
-     *
-     * @param bytes 文件字节流
-     * @return JPG, GIF, PNG ,BMP or null
-     */
-    public static String getFileSuffix(byte[] bytes) {
-        if (bytes == null || bytes.length < 10) {
-            return null;
-        }
-
-        if (bytes[0] == 'G' && bytes[1] == 'I' && bytes[2] == 'F') {
-            return "GIF";
-        } else if (bytes[1] == 'P' && bytes[2] == 'N' && bytes[3] == 'G') {
-            return "PNG";
-        } else if (bytes[6] == 'J' && bytes[7] == 'F' && bytes[8] == 'I' && bytes[9] == 'F') {
-            return "JPG";
-        } else if (bytes[0] == 'B' && bytes[1] == 'M') {
-            return "BMP";
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * 获取文件的真实媒体类型。目前只支持JPG, GIF, PNG, BMP四种图片文件。
-     *
-     * @param bytes 文件字节流
-     * @return 媒体类型(MEME-TYPE)
-     */
-    public static String getMimeType(byte[] bytes) {
-        String suffix = getFileSuffix(bytes);
-        String mimeType;
-
-        if ("JPG".equals(suffix)) {
-            mimeType = "image/jpeg";
-        } else if ("GIF".equals(suffix)) {
-            mimeType = "image/gif";
-        } else if ("PNG".equals(suffix)) {
-            mimeType = "image/png";
-        } else if ("BMP".equals(suffix)) {
-            mimeType = "image/bmp";
-        } else {
-            mimeType = "application/octet-stream";
-        }
-
-        return mimeType;
-    }
 
     /**
      * 文件重命名

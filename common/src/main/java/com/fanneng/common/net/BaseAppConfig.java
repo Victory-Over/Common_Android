@@ -1,9 +1,8 @@
-package net;
+package com.fanneng.common.net;
 
 import android.content.Intent;
 
-import utils.AppContextUtils;
-import utils.SpUtil;
+
 
 /**
  * @author luyufeng on 2018/4/20.

@@ -1,4 +1,4 @@
-package utils;
+package com.fanneng.common.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

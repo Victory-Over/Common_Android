@@ -1,4 +1,4 @@
-package utils;
+package com.fanneng.common.utils;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

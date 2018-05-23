@@ -1,4 +1,4 @@
-package utils;
+package com.fanneng.common.utils;
 
 import java.io.Closeable;
 import java.io.IOException;

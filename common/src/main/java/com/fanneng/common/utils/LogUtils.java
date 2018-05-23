@@ -1,5 +1,5 @@
 
-package utils;
+package com.fanneng.common.utils;
 
 import android.util.Log;
 

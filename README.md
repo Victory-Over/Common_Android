@@ -11,14 +11,14 @@ allprojects {
     }
 }
 ```
-` ``
+```
 dependencies {
     implementation 'com.fanneng.android:common:1.0.0@aar'
 }
-` ``
+```
 
 ### 2、添加混淆
-
+```
 #Retrofit2
 -keepattributes Signature
 #Retain service method parameters.
@@ -47,3 +47,4 @@ dependencies {
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
 }
+```

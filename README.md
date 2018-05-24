@@ -9,7 +9,8 @@
         maven { url "https://jitpack.io" }
         maven { url "https://source.enncloud.cn/FNMobileTeam/Common_Android/raw/master" }
     }
-}```
+}
+```
 
 dependencies {
     implementation 'com.fanneng.android:common:1.0.0@aar'
@@ -17,12 +18,12 @@ dependencies {
 
 ### 2、添加混淆
 
-```#Retrofit2
--keepattributes Signature
-# Retain service method parameters.
--keepclassmembernames,allowobfuscation interface * {
-    @retrofit2.http.* <methods>;
-}
+#Retrofit2<br>
+-keepattributes Signature <br>
+# Retain service method parameters.<br>
+-keepclassmembernames,allowobfuscation interface * {<br>
+    @retrofit2.http.* <methods>;<br>
+}<br>
 # Ignore annotation used for build tooling.
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 

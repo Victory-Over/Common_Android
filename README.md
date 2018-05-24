@@ -1,8 +1,8 @@
 # Common_Android
 ## 一、使用
 ### 1、添加依赖和配置
-
-```allprojects {
+```
+allprojects {
     repositories {
         google()
         jcenter()
@@ -11,20 +11,21 @@
     }
 }
 ```
-
+` ``
 dependencies {
     implementation 'com.fanneng.android:common:1.0.0@aar'
 }
+` ``
 
 ### 2、添加混淆
 
-#Retrofit2<br>
--keepattributes Signature <br>
-# Retain service method parameters.<br>
--keepclassmembernames,allowobfuscation interface * {<br>
-    @retrofit2.http.* <methods>;<br>
-}<br>
-# Ignore annotation used for build tooling.
+#Retrofit2
+-keepattributes Signature
+#Retain service method parameters.
+-keepclassmembernames,allowobfuscation interface * {
+    @retrofit2.http.* <methods>;
+}
+#Ignore annotation used for build tooling.
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
 #OkHttp3
@@ -32,7 +33,7 @@ dependencies {
 -dontwarn okio.**
 -dontwarn javax.annotation.**
 -dontwarn org.conscrypt.**
-# A resource is loaded with a relative path so the package of this class must be preserved.
+#A resource is loaded with a relative path so the package of this class must be preserved.
 -keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
 #EventBus
@@ -42,7 +43,7 @@ dependencies {
 }
 -keep enum org.greenrobot.eventbus.ThreadMode { *; }
 
-# Only required if you use AsyncExecutor
+#Only required if you use AsyncExecutor
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
-}```
+}

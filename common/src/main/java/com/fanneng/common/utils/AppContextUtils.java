@@ -1,25 +1,28 @@
 package com.fanneng.common.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 
 /**
- * describe：app级别的上下文
+ * describe：app的上下文
  * author ：王文彬 on 2018/5/22 11：21
  * email：wwb199055@126.com
  */
 public class AppContextUtils {
 
-  private static Context context;
+  @SuppressLint("StaticFieldLeak")
+  private static Context context = null;
 
-  private static Activity activity;
+  @SuppressLint("StaticFieldLeak")
+  private static Activity activity = null;
 
   private AppContextUtils() {
     throw new UnsupportedOperationException("u can't instantiate me...");
   }
 
   /**
-   * 初始化工具类
+   * 在Application中进行初始化
    *
    * @param context 上下文
    */
@@ -28,12 +31,12 @@ public class AppContextUtils {
   }
 
   /**
-   * 初始化工具类
+   * 在CommonActivity中进行初始化
    *
-   * @param context 上下文
+   * @param act 上下文
    */
-  public static void init(Activity context) {
-    AppContextUtils.activity = context;
+  public static void init(Activity act) {
+    AppContextUtils.activity = act;
   }
 
 
@@ -51,9 +54,9 @@ public class AppContextUtils {
   }
 
   /**
-   * 获取ApplicationContext
+   * 获取Activity
    *
-   * @return ApplicationContext
+   * @return Activity
    */
   public static Activity getActivity() {
     if (context != null) {

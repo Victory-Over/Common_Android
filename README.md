@@ -1,7 +1,5 @@
-Common_Android
-===
-一、使用
----
+#Common_Android
+##一、使用
 ###1、添加依赖和配置
 
 allprojects {
@@ -18,8 +16,8 @@ dependencies {
 }
 
 ###2、添加混淆
-`
-#Retrofit2
+
+`#Retrofit2
 -keepattributes Signature
 # Retain service method parameters.
 -keepclassmembernames,allowobfuscation interface * {
@@ -46,5 +44,4 @@ dependencies {
 # Only required if you use AsyncExecutor
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
-}
-``
+}``

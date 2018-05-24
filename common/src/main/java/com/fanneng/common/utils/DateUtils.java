@@ -214,7 +214,8 @@ public class DateUtils {
     public static int getDateDiff(String date1) {
         Calendar vDate = Calendar.getInstance();
         try {
-            Date date = DATE_FORMAT_DATE.parse(date1);// 通过日期格式的parse()方法将字符串转换成日期
+            // 通过日期格式的parse()方法将字符串转换成日期
+            Date date = DATE_FORMAT_DATE.parse(date1);
             vDate.setTime(date);
         } catch (Exception e) {
         }
@@ -383,7 +384,7 @@ public class DateUtils {
      * @param format   格式化
      * */
     public static String date2Str(Date dateDate, String format) {
-        SimpleDateFormat formatter = new SimpleDateFormat(format);
+        SimpleDateFormat formatter = new SimpleDateFormat(format, Locale.CHINA);
         return formatter.format(dateDate);
     }
 
@@ -394,7 +395,7 @@ public class DateUtils {
      * @param format   格式化
      * */
     public static Date str2Date(String strDate, String format) {
-        SimpleDateFormat formatter = new SimpleDateFormat(format);
+        SimpleDateFormat formatter = new SimpleDateFormat(format, Locale.CHINA);
         ParsePosition pos = new ParsePosition(0);
         return formatter.parse(strDate, pos);
     }

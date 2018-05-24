@@ -6,14 +6,11 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Environment;
-import android.os.Looper;
 import android.os.SystemClock;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FilenameFilter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -23,6 +20,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -32,29 +30,41 @@ import java.util.Map;
  * 使用:
  * 在Application中初始化
  * CrashHandler.getInstance().init(this);
+ *
+ * @author ms
  */
 public class CrashHandlerUtils implements UncaughtExceptionHandler {
 
     public static String TAG = "CrashHandler";
-    public static final String FILE_FORMAT = "yyyy-MM-dd_HH-mm-ss-sss";
-    //系统默认的UncaughtException处理类
+    private static final String FILE_FORMAT = "yyyy-MM-dd_HH-mm-ss-sss";
+
     private UncaughtExceptionHandler mDefaultHandler;
 
-    private static CrashHandlerUtils instance = new CrashHandlerUtils();
+    private static final CrashHandlerUtils INSTANCE = new CrashHandlerUtils();
     private Context mContext;
+    private FinishCallback finishCallback;
 
     private int autoClearDay = 5;
 
-    // 用来存储设备信息和异常信息
+    /**
+     * 用来存储设备信息和异常信息
+     * */
     private Map<String, String> infos = new HashMap<>();
 
     /** 保证只有一个CrashHandler实例 */
     private CrashHandlerUtils() {
     }
 
+    /**
+     * 程序崩溃 退出时的回调 做一些后续操作
+     * */
+    public void setFinishCallback(FinishCallback finishCallback) {
+        this.finishCallback = finishCallback;
+    }
+
     /** 获取CrashHandler实例 ,单例模式 */
     public static CrashHandlerUtils getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     /**
@@ -106,18 +116,6 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
         }
 
         try {
-            // 使用Toast来显示异常信息
-            new Thread() {
-
-                @Override
-                public void run() {
-                    Looper.prepare();
-                    Toast.makeText(mContext, "很抱歉,程序出现异常,即将重启.",
-                            Toast.LENGTH_LONG).show();
-                    Looper.loop();
-                }
-            }.start();
-
             autoClear();
             // 收集设备参数信息
             collectDeviceInfo(mContext);
@@ -126,6 +124,10 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
             // 保存日志文件
             saveCrashInfoFile(ex);
             SystemClock.sleep(1000);
+
+            if(finishCallback != null) {
+                finishCallback.finish();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -138,7 +140,7 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
      *
      * @param ctx
      */
-    public void collectDeviceInfo(Context ctx) {
+    private void collectDeviceInfo(Context ctx) {
         try {
             PackageManager pm = ctx.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(),
@@ -166,32 +168,33 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
     /**
      * 保存错误信息到文件中
      * @param ex
-     * @return 返回文件名称,便于将文件传送到服务器
-     * @throws Exception
      */
-    private String saveCrashInfoFile(Throwable ex) throws Exception {
-        StringBuffer sb = new StringBuffer();
+    private void saveCrashInfoFile(Throwable ex) throws Exception {
+        StringBuilder sb = new StringBuilder();
         try {
-            SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss sss");
+            SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss sss", Locale.CHINA);
             String date = sDateFormat.format(new Date());
-            sb.append("\r\n" + date + "\n");
+            sb.append("\r\n");
+            sb.append(date);
+            sb.append("\n");
             for (Map.Entry<String, String> entry : infos.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
-                sb.append(key + "=" + value + "\n");
+                sb.append(key);
+                sb.append("=");
+                sb.append(value);
+                sb.append("\n");
             }
 
             String result = getStackTrace(ex.getCause());
             sb.append(result);
 
-            String fileName = writeFile(sb.toString());
-            return fileName;
+            writeFile(sb.toString());
         } catch (Exception e) {
             Log.e(TAG, "an error occured while writing file...", e);
             sb.append("an error occured while writing file...\r\n");
             writeFile(sb.toString());
         }
-        return null;
     }
 
     /**
@@ -206,8 +209,8 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
         return writer.toString();
     }
 
-    private String writeFile(String sb) throws Exception {
-        DateFormat formatter = new SimpleDateFormat(FILE_FORMAT);
+    private void writeFile(String sb) throws Exception {
+        DateFormat formatter = new SimpleDateFormat(FILE_FORMAT, Locale.CHINA);
         String time = formatter.format(new Date());
         String fileName = "crash-" + time + ".log";
         if (FileUtils.hasSdcard()) {
@@ -222,14 +225,14 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
             fos.flush();
             fos.close();
         }
-
-        return fileName;
     }
 
     /**
      * 获取目录 基于包名
+     *
+     * @return 返回目录绝对路径
      * */
-    public String getGlobalpath() {
+    private String getGlobalpath() {
         PackageManager pm = mContext.getPackageManager();
         String appName = mContext.getApplicationInfo().loadLabel(pm).toString();
         return Environment.getExternalStorageDirectory().getAbsolutePath()
@@ -239,18 +242,18 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
     /**
      * 文件删除
      */
-    public void autoClear() {
+    private void autoClear() {
         if(autoClearDay != 0) {
-            FileUtils.delete(getGlobalpath(), new FilenameFilter() {
-
-                @Override
-                public boolean accept(File file, String filename) {
-                    DateFormat formatter = new SimpleDateFormat(FILE_FORMAT);
-                    String time = formatter.format(DateUtils.addDay(new Date(), -Math.abs(autoClearDay)));
-                    String date = "crash-" + time + ".log";
-                    return date.compareTo(filename) > 0;
-                }
+            FileUtils.delete(getGlobalpath(), (File file, String filename) -> {
+                DateFormat formatter = new SimpleDateFormat(FILE_FORMAT, Locale.CHINA);
+                String time = formatter.format(DateUtils.addDay(new Date(), -Math.abs(autoClearDay)));
+                String date = "crash-" + time + ".log";
+                return date.compareTo(filename) > 0;
             });
         }
+    }
+
+    public interface FinishCallback {
+        public void finish();
     }
 }

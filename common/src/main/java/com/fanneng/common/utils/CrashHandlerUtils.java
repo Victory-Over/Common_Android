@@ -45,6 +45,7 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
 
     private static final CrashHandlerUtils INSTANCE = new CrashHandlerUtils();
     private Context mContext;
+    private FinishCallback finishCallback;
 
     private int autoClearDay = 5;
 
@@ -55,6 +56,13 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
 
     /** 保证只有一个CrashHandler实例 */
     private CrashHandlerUtils() {
+    }
+
+    /**
+     * 程序崩溃 退出时的回调 做一些后续操作
+     * */
+    public void setFinishCallback(FinishCallback finishCallback) {
+        this.finishCallback = finishCallback;
     }
 
     /** 获取CrashHandler实例 ,单例模式 */
@@ -111,18 +119,6 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
         }
 
         try {
-            // 使用Toast来显示异常信息
-            new Thread() {
-
-                @Override
-                public void run() {
-                    Looper.prepare();
-                    Toast.makeText(mContext, "很抱歉,程序出现异常,即将重启.",
-                            Toast.LENGTH_LONG).show();
-                    Looper.loop();
-                }
-            }.start();
-
             autoClear();
             // 收集设备参数信息
             collectDeviceInfo(mContext);
@@ -131,6 +127,10 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
             // 保存日志文件
             saveCrashInfoFile(ex);
             SystemClock.sleep(1000);
+
+            if(finishCallback != null) {
+                finishCallback.finish();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -254,5 +254,9 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
                 return date.compareTo(filename) > 0;
             });
         }
+    }
+
+    public interface FinishCallback {
+        public void finish();
     }
 }

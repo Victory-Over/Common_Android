@@ -49,7 +49,7 @@ dependencies {
 }
 ```
 ### 3、继承common类
-#### ①、CommonApplication 初始化第三方框架
+##### ①、CommonApplication 初始化第三方框架
 ```
 public class YourBaseApplication extend CommonApplication {
     ...
@@ -58,15 +58,18 @@ public class YourBaseApplication extend CommonApplication {
     };
 }
 ```
-#### ②、CommonActivity 初始化工具类
+##### ②、CommonActivity 初始化工具类
 ```
 public class YourBaseActivity extend CommonActivity {
     ...
 }
 ```
-#### ③、CommonFragment 初始化工具类
+##### ③、CommonFragment 初始化工具类
 ```
 public class YourBaseFragment extend CommonFragment {
     ...
 }
 ```
+## 二、功能介绍
+### 1、第三方框架
+##### ①、[网络请求框架 Retrofit](https://github.com/square/retrofit)

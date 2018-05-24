@@ -48,3 +48,25 @@ dependencies {
     <init>(java.lang.Throwable);
 }
 ```
+### 3、继承common类
+#### ①、CommonApplication 初始化第三方框架
+```
+public class YourBaseApplication extend CommonApplication {
+    ...
+    public String setBaseUrl(){
+        return "你的服务器地址，用于网络框架的访问";
+    };
+}
+```
+#### ②、CommonActivity 初始化工具类
+```
+public class YourBaseActivity extend CommonActivity {
+    ...
+}
+```
+#### ③、CommonFragment 初始化工具类
+```
+public class YourBaseFragment extend CommonFragment {
+    ...
+}
+```

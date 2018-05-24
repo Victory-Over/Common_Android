@@ -1,4 +1,4 @@
-package com.fanneng.common.net;
+package com.fanneng.common.utils;
 
 /**
  * @author ：王文彬 on 2018/5/23 12：33

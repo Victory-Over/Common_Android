@@ -1,4 +1,4 @@
-package com.fanneng.common.customview;
+package com.fanneng.common.customview.dialog;
 
 import android.content.Context;
 

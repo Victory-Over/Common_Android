@@ -3,7 +3,6 @@ package com.fanneng.common.utils;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 
 import com.fanneng.common.base.CommonFragment;
 
@@ -129,10 +128,8 @@ public class ViewManager {
     public void exitApp(Context context) {
         try {
             finishAllActivity();
-            //杀死后台进程需要在AndroidManifest中声明android.permission.KILL_BACKGROUND_PROCESSES；
-            android.app.ActivityManager activityManager = (android.app.ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-            activityManager.killBackgroundProcesses(context.getPackageName());
-            //System.exit(0);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
         } catch (Exception e) {
             LogUtils.e("ActivityManager", "app exit" + e.getMessage());
         }

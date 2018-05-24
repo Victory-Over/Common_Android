@@ -1,15 +1,14 @@
 package com.fanneng.common.net;
 
-import com.fanneng.common.utils.EventBusMsg;
-import com.google.gson.JsonParseException;
-
 import android.app.Activity;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.fanneng.common.R;
-import com.fanneng.common.customview.CustomProgressDialogUtils;
+import com.fanneng.common.customview.dialog.CustomProgressDialogUtils;
+import com.fanneng.common.utils.EventBusMsg;
 import com.fanneng.common.utils.ToastUtils;
+import com.google.gson.JsonParseException;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;

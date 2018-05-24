@@ -2,9 +2,11 @@ package com.fanneng.common.base;
 
 import android.app.Application;
 
+import com.fanneng.common.BuildConfig;
 import com.fanneng.common.utils.CrashHandlerUtils;
 import com.fanneng.common.net.ApiConfig;
 import com.fanneng.common.utils.AppContextUtils;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * @author ：王文彬 on 2018/5/22 14：35
@@ -20,6 +22,14 @@ public abstract class CommonApplication extends Application {
     AppContextUtils.init(this);
     CrashHandlerUtils.getInstance().init(this);
     ApiConfig.getInstance().setServerUrl(setBaseUrl());
+
+    if (BuildConfig.DEBUG) {
+      if (LeakCanary.isInAnalyzerProcess(this)) {
+        return;
+      }
+      LeakCanary.install(this);
+    }
+
   }
 
 

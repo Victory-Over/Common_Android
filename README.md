@@ -87,11 +87,11 @@ Context context = AppContextUtils.getContext();
 
 
 * DateUtils<br>
-针对日期处理的Utils，包括日期的格式化、判断等操作
+>>针对日期处理的Utils，包括日期的格式化、判断等操作
 
 
 * EventBusMsg<br>
-EventBus传递内容的封装，举个栗子：
+>>EventBus传递内容的封装，举个栗子：
 ```
 //tag:传递消息的标记
 //T:索要传递的对象
@@ -100,19 +100,19 @@ EventBus.getDefault().post(new EventBusMsg<T>(tag,T))
 
 
 * FileUtils<br>
-针对文件处理的辅助工具类
+>>针对文件处理的辅助工具类
 
 
 * LogUtils<br>
-Log打印工具类，只会在Debug模式下才会打印出来
+>>Log打印工具类，只会在Debug模式下才会打印出来
 
 
 * NetworkUtils<br>
-获取网络状态、网络类型、运营商等工具类
+>>获取网络状态、网络类型、运营商等工具类
 
 
 * SpUtils<br>
-Sharepreference工具类
+>>Sharepreference工具类
 ```
 SpUtils.setXXX(String key, Object value);//设置数据
 SpUtils.getXXX(String key);//获取数据
@@ -122,7 +122,7 @@ SpUtils.removeAll();//删除所有保存的数据
 
 
 * StatusBarUtils<br>
-状态栏设置工具类，如果当前Activity/Fragment需要做特殊的状态栏处理则调用
+>>状态栏设置工具类，如果当前Activity/Fragment需要做特殊的状态栏处理则调用
 ```
 StatusBarUtil.setColor(context, ContextCompat.getColor(context,R.color.xxxx));
 //如果设置的背景与状态栏字体颜色有冲突，例如状态栏背景颜色和字体颜色都是蓝色，
@@ -135,14 +135,14 @@ StatusBarUtil.setLightMode(MainActivity.this);
 
 
 * ToastUtils<br>
-Toast工具类，已针对重复Toast做处理
+>>Toast工具类，已针对重复Toast做处理
 ```
 ToastUtils.show(String msg);
 ```
 
 
 * ViewManagerUtils<br>
-Activity和Fragment的管理工具类
+>>Activity和Fragment的管理工具类
 ```
 //退出所有Activity
 ViewManagerUtils.getInstance().finishAllActivity();

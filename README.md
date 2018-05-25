@@ -1,7 +1,7 @@
 # Common_Android
 ## 一、使用
 #### 1、添加依赖和配置
-```
+>>```
 allprojects {
     repositories {
         google()
@@ -11,14 +11,14 @@ allprojects {
     }
 }
 ```
-```
+>>```
 dependencies {
     implementation 'com.fanneng.android:common:1.0.0@aar'
 }
 ```
 
 #### 2、添加混淆
-```
+>>```
 #Retrofit2
 -keepattributes Signature
 #Retain service method parameters.

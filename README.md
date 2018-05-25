@@ -220,9 +220,9 @@ APIService.getInstance()
         });
 ```
 
->>4、如果App接口要使用token访问，则需要在登录之后设置token
+>>4、如果App接口要使用token访问，则需要在登录之后设置app_token
 ```
-ApiConfig.getInstance().setAppToken(token);
+ApiConfig.getInstance().setAppToken(app_token);
 ```
 
 
@@ -230,7 +230,7 @@ ApiConfig.getInstance().setAppToken(token);
 #### 3、所使用到的第三方框架
 * [网络请求 Retrofit](https://github.com/square/retrofit)
 * [网络请求 OKHttp](https://github.com/square/okhttp)
-* [网络请求 RxAndroid](https://github.com/ReactiveX/RxAndroid)
+* [线程切换 RxAndroid](https://github.com/ReactiveX/RxAndroid)
 * [注解 ButterKnife](https://github.com/JakeWharton/butterknife)
 * [图表 MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
 * [通信 EventBus](https://github.com/greenrobot/EventBus)

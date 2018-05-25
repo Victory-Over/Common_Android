@@ -98,20 +98,19 @@ EventBus.getDefault().post(new EventBusMsg<T>(tag,T))
 ```
 
 
-* FileUtils
-<br>
+* FileUtils<br>
 针对文件处理的辅助工具类
 
 
-* LogUtils</br>
+* LogUtils<br>
 Log打印工具类，只会在Debug模式下才会打印出来
 
 
-* NetworkUtils</br>
+* NetworkUtils<br>
 获取网络状态、网络类型、运营商等工具类
 
 
-* SpUtils</br>
+* SpUtils<br>
 Sharepreference工具类
 ```ruby
 SpUtils.setXXX(String key, Object value);//设置数据
@@ -121,9 +120,11 @@ SpUtils.removeAll();//删除所有保存的数据
 ```
 
 
-* StatusBarUtil</br>
+* StatusBarUtil<br>
 状态栏设置工具类，如果当前Activity/Fragment需要做特殊的状态栏处理则调用
+
 ```ruby
+
 StatusBarUtil.setColor(context, ContextCompat.getColor(context,R.color.xxxx));
 //如果设置的背景与状态栏字体颜色有冲突，例如状态栏背景颜色和字体颜色都是蓝色，
 //则需要在setColor之前调用
@@ -131,17 +132,18 @@ StatusBarUtil.setColor(context, ContextCompat.getColor(context,R.color.xxxx));
 StatusBarUtil.setDarkMode(MainActivity.this);
 //或者设置字体颜色为白色
 StatusBarUtil.setLightMode(MainActivity.this);
+
 ```
 
 
-* ToastUtils</br>
+* ToastUtils<br>
 Toast工具类，已针对重复Toast做处理
 ```ruby
 ToastUtils.show(String msg);
 ```
 
 
-* ViewManagerUtils</br>
+* ViewManagerUtils<br>
 Activity和Fragment的管理工具类
 ```ruby
 //退出所有Activity

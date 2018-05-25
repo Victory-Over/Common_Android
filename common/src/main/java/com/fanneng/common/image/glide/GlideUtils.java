@@ -4,18 +4,23 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.fanneng.common.image.GlideApp;
 
 /**
  * @author ：王文彬 on 2018/5/24 17：10
- * @describe：
+ * @describe： 图片显示工具类，是基于{@link com.bumptech.glide.Glide 4}版本进行的封装
  * @email：wwb199055@126.com
  */
 public class GlideUtils {
 
 
-  public static void showImageView(Context context, int errorImg, String url,
-                                   ImageView imgView) {
+  /**
+   * @param context  上下文
+   * @param errorImg 错误和占位符图片
+   * @param url      图片地址
+   * @param imgView  需要显示的图片
+   */
+  public static void show(Context context, int errorImg, String url,
+                          ImageView imgView) {
     GlideApp.with(context)
         .load(url)
         .placeholder(errorImg)
@@ -23,31 +28,5 @@ public class GlideUtils {
         .centerCrop()
         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
         .into(imgView);
-
-   /* GlideApp.with(context)
-        .load(SpUtil.getString(ConstantUtils.IMGURL))
-        .placeholder(R.mipmap.user_head_icon)
-        .error(R.mipmap.user_head_icon)
-        .dontAnimate()
-        .centerCrop()
-        .into(userHeadIv);
-    Glide.with(context).load(url)// 加载图片
-        .error(errorimg)// 设置错误图片
-        .crossFade()// 设置淡入淡出效果，默认300ms，可以传参
-        .placeholder(errorimg)// 设置占位图
-        .diskCacheStrategy(DiskCacheStrategy.RESULT)// 缓存修改过的图片
-        .into(imgeview);*/
-    // Glide.with(context).load(url).thumbnail(0.1f).error(errorimg)
-    // .into(imgeview);
-
-    // Glide
-    // .with(context)
-    // .load(UsageExampleListViewAdapter.eatFoodyImages[0])
-    // .placeholder(R.mipmap.ic_launcher) //设置占位图
-    // .error(R.mipmap.future_studio_launcher) //设置错误图片
-    // .crossFade() //设置淡入淡出效果，默认300ms，可以传参
-    // //.dontAnimate() //不显示动画效果
-    // .into(imageViewFade);
-
   }
 }

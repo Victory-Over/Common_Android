@@ -71,7 +71,7 @@ public class YourBaseFragment extend CommonFragment {
 }
 ```
 
-</br>
+<br><br><br>
 
 ## 二、功能介绍
 #### utils工具类
@@ -122,9 +122,7 @@ SpUtils.removeAll();//删除所有保存的数据
 
 * StatusBarUtil<br>
 状态栏设置工具类，如果当前Activity/Fragment需要做特殊的状态栏处理则调用
-
 ```ruby
-
 StatusBarUtil.setColor(context, ContextCompat.getColor(context,R.color.xxxx));
 //如果设置的背景与状态栏字体颜色有冲突，例如状态栏背景颜色和字体颜色都是蓝色，
 //则需要在setColor之前调用
@@ -132,7 +130,6 @@ StatusBarUtil.setColor(context, ContextCompat.getColor(context,R.color.xxxx));
 StatusBarUtil.setDarkMode(MainActivity.this);
 //或者设置字体颜色为白色
 StatusBarUtil.setLightMode(MainActivity.this);
-
 ```
 
 

@@ -84,26 +84,33 @@ Context context = AppContextUtils.getContext();
 注意：凡是跟UI相关的，都应该使用Activity做为Context来处理（Dialog、startActivity、Layout Inflation）；其他的一些操作可以使用ApplicationContext
 引用ApplicationContext并不会导致内存泄漏。引用Activity的Context才会导致内存泄漏。
 
+
 * DateUtils</br>
 针对日期处理的Utils，包括日期的格式化、判断等操作
 
-* EventBusMsg<br>
+
+* EventBusMsg</br>
 EventBus传递内容的封装，举个栗子：
 ```ruby
 //tag:传递消息的标记
 //T:索要传递的对象
 EventBus.getDefault().post(new EventBusMsg<T>(tag,T))
 ```
-* FileUtils
+
+
+* FileUtils</br>
 针对文件处理的辅助工具类
 
-* LogUtils
+
+* LogUtils</br>
 Log打印工具类，只会在Debug模式下才会打印出来
 
-* NetworkUtils
+
+* NetworkUtils</br>
 获取网络状态、网络类型、运营商等工具类
 
-* SpUtils
+
+* SpUtils</br>
 Sharepreference工具类
 ```ruby
 SpUtils.setXXX(String key, Object value);//设置数据
@@ -111,7 +118,9 @@ SpUtils.getXXX(String key);//获取数据
 SpUtils.remove(String key);//删除某个数据
 SpUtils.removeAll();//删除所有保存的数据
 ```
-* StatusBarUtil
+
+
+* StatusBarUtil</br>
 状态栏设置工具类，如果当前Activity/Fragment需要做特殊的状态栏处理则调用
 ```ruby
 StatusBarUtil.setColor(context, ContextCompat.getColor(context,R.color.xxxx));
@@ -122,13 +131,16 @@ StatusBarUtil.setDarkMode(MainActivity.this);
 //或者设置字体颜色为白色
 StatusBarUtil.setLightMode(MainActivity.this);
 ```
-* ToastUtils
+
+
+* ToastUtils</br>
 Toast工具类，已针对重复Toast做处理
 ```ruby
 ToastUtils.show(String msg);
 ```
 
-* ViewManagerUtils
+
+* ViewManagerUtils</br>
 Activity和Fragment的管理工具类
 ```ruby
 //退出所有Activity

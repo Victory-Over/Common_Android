@@ -8,7 +8,7 @@
 
     <application>
         <activity android:name=".base.CommonActivity" />
-        <meta-data android:name="com.fanneng.common.image.glide.GlideCacheConfiguration"
+        <meta-data android:name="com.fanneng.common.image.glide.config.GlideCacheConfiguration"
             android:value="GlideCache"/>
     </application>
 

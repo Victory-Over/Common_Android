@@ -14,20 +14,20 @@ import java.util.Stack;
  * @author luyufeng
  * Activity和Fragment管理
  */
-public class ViewManager {
+public class ViewManagerUtils {
 
     private static Stack<Activity> activityStack;
     private static List<CommonFragment> fragmentList;
 
-    public static ViewManager getInstance() {
+    public static ViewManagerUtils getInstance() {
         return ViewManagerHolder.sInstance;
     }
 
     private static class ViewManagerHolder {
-        private static final ViewManager sInstance = new ViewManager();
+        private static final ViewManagerUtils sInstance = new ViewManagerUtils();
     }
 
-    private ViewManager() {
+    private ViewManagerUtils() {
     }
 
     public void addFragment(int index, CommonFragment fragment) {

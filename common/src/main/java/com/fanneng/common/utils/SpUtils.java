@@ -19,7 +19,7 @@ import java.util.Map.Entry;
  * <p>
  * Fuction：SharedPreferences工具
  */
-public class SpUtil {
+public class SpUtils {
 
   public static final String SP_XML = "info_cache";
 

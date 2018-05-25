@@ -3,9 +3,10 @@ package com.fanneng.common.base;
 import android.app.Application;
 
 import com.fanneng.common.BuildConfig;
-import com.fanneng.common.utils.CrashHandlerUtils;
 import com.fanneng.common.net.ApiConfig;
 import com.fanneng.common.utils.AppContextUtils;
+import com.fanneng.common.utils.CrashHandlerUtils;
+import com.fanneng.common.utils.ViewManagerUtils;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -29,7 +30,7 @@ public abstract class CommonApplication extends Application {
       }
       LeakCanary.install(this);
     }
-
+      ViewManagerUtils.getInstance().exitApp(this);
   }
 
 

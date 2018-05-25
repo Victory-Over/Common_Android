@@ -1,6 +1,6 @@
 package com.fanneng.common.net;
 
-import com.fanneng.common.utils.SpUtil;
+import com.fanneng.common.utils.SpUtils;
 
 
 /**
@@ -43,11 +43,11 @@ public class ApiConfig {
   }
 
   public void setAppToken(String token) {
-    SpUtil.setString(APP_TOKEN, token);
+    SpUtils.setString(APP_TOKEN, token);
   }
 
   public String getAppToken() {
-    return SpUtil.getString(APP_TOKEN);
+    return SpUtils.getString(APP_TOKEN);
   }
 
 

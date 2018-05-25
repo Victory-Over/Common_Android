@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.fanneng.common.utils.AppContextUtils;
 import com.fanneng.common.utils.StatusBarUtil;
-import com.fanneng.common.utils.ViewManager;
+import com.fanneng.common.utils.ViewManagerUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -25,7 +25,7 @@ public class CommonActivity extends RxAppCompatActivity {
     initStatusBar();
     ButterKnife.bind(this);
     AppContextUtils.init(this);
-    ViewManager.getInstance().addActivity(this);
+    ViewManagerUtils.getInstance().addActivity(this);
     EventBus.getDefault().register(this);
   }
 

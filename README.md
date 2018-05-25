@@ -84,10 +84,10 @@ Context context = AppContextUtils.getContext();
 注意：凡是跟UI相关的，都应该使用Activity做为Context来处理（Dialog、startActivity、Layout Inflation）；其他的一些操作可以使用ApplicationContext
 引用ApplicationContext并不会导致内存泄漏。引用Activity的Context才会导致内存泄漏。
 
-*  DateUtils
+* DateUtils</br>
 针对日期处理的Utils，包括日期的格式化、判断等操作
 
-*  EventBusMsg
+* EventBusMsg<br>
 EventBus传递内容的封装，举个栗子：
 ```ruby
 //tag:传递消息的标记

@@ -50,7 +50,7 @@ dependencies {
 ```
 #### 3、继承common类
 * CommonApplication 初始化第三方框架<br>
-```Java
+```ruby
 public class YourBaseApplication extend CommonApplication {
     ...
     public String setBaseUrl(){
@@ -59,13 +59,13 @@ public class YourBaseApplication extend CommonApplication {
 }
 ```
 * CommonActivity 初始化工具类<br>
-```Java
+```ruby
 public class YourBaseActivity extend CommonActivity {
     ...
 }
 ```
 * CommonFragment 初始化工具类<br>
-```Java
+```ruby
 public class YourBaseFragment extend CommonFragment {
     ...
 }

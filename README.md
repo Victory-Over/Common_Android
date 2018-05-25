@@ -71,7 +71,7 @@ public class YourBaseFragment extend CommonFragment {
 }
 ```
 
-
+</br>
 
 ## 二、功能介绍
 #### 1、utils工具类

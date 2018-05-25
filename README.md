@@ -129,7 +129,7 @@ ToastUtils.show(String msg);
 
 ##### ⑨、ViewManagerUtils
 Activity和Fragment的管理工具类
-```
+```ruby
 //退出所有Activity
 ViewManagerUtils.getInstance().finishAllActivity();
 //退出应用程序

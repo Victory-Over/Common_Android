@@ -1,7 +1,7 @@
 # Common_Android
 ## 一、使用
 #### 1、添加依赖和配置
-```ruby
+```android
 allprojects {
     repositories {
         google()
@@ -10,7 +10,6 @@ allprojects {
         maven { url "https://source.enncloud.cn/FNMobileTeam/Common_Android/raw/master" }
     }
 }
-end
 ```
 ```ruby
 dependencies {
@@ -143,7 +142,7 @@ ToastUtils.show(String msg);
 
 * ViewManagerUtils<br>
 Activity和Fragment的管理工具类
-```ruby
+```android
 //退出所有Activity
 ViewManagerUtils.getInstance().finishAllActivity();
 //退出应用程序

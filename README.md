@@ -2,6 +2,7 @@
 ## 一、使用
 #### 1、添加依赖和配置
 * 根目录build.gradle文件添加如下配置：
+
 >>```
 dependencies {
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
@@ -13,7 +14,9 @@ allprojects {
     }
 }
 ```
+
 * APP目录build.gradle文件添加如下配置：
+
 >>```
 dependencies {
     implementation 'com.fanneng.android:common:1.0.0@aar'

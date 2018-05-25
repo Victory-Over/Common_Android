@@ -82,7 +82,7 @@ public class YourBaseFragment extend CommonFragment {
 Context context = AppContextUtils.getContext();
 ```
 可以获取全局Context对象
-注意：凡是跟UI相关的，都应该使用Activity做为Context来处理（Dialog、startActivity、Layout Inflation）；其他的一些操作可以使用ApplicationContext
+注意：凡是跟UI相关的，都应该使用Activity做为Context来处理（Dialog、startActivity、Layout Inflation）；其他的一些操作可以使用ApplicationContext，
 引用ApplicationContext并不会导致内存泄漏。引用Activity的Context才会导致内存泄漏。
 
 
@@ -230,9 +230,14 @@ ApiConfig.getInstance().setAppToken(app_token);
 #### 3、所使用到的第三方框架
 * [网络请求 Retrofit](https://github.com/square/retrofit)
 * [网络请求 OKHttp](https://github.com/square/okhttp)
-* [线程切换 RxAndroid](https://github.com/ReactiveX/RxAndroid)
+* [响应式编程 RxAndroid](https://github.com/ReactiveX/RxAndroid)
+* [线程切换 RxJava](https://github.com/ReactiveX/RxJava)
 * [注解 ButterKnife](https://github.com/JakeWharton/butterknife)
 * [图表 MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
 * [通信 EventBus](https://github.com/greenrobot/EventBus)
 * [内存检测 LeakCanary](https://github.com/square/leakcanary)
 
+
+#### 4、 作者
+* 鲁宇峰   邮箱：466708987@qq.com
+* 王文彬   邮箱：wwb199055@126.com

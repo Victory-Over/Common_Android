@@ -1,4 +1,4 @@
-package com.fanneng.common.crashcaught;
+package com.fanneng.common.crash;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;

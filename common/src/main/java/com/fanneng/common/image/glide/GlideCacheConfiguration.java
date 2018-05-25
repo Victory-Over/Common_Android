@@ -3,7 +3,6 @@ package com.fanneng.common.image.glide;
 import android.content.Context;
 
 import com.bumptech.glide.GlideBuilder;
-import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.module.AppGlideModule;
@@ -13,8 +12,8 @@ import com.bumptech.glide.module.AppGlideModule;
  * @describe：
  * @email：wwb199055@126.com
  */
-@GlideModule
-public class AppGlideConfiguration extends AppGlideModule {
+
+public class GlideCacheConfiguration extends AppGlideModule {
   @Override
   public void applyOptions(Context context, GlideBuilder builder) {
 

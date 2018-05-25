@@ -1,4 +1,4 @@
-package com.fanneng.common.utils;
+package com.fanneng.common.crashcaught;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -8,6 +8,9 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.SystemClock;
 import android.util.Log;
+
+import com.fanneng.common.utils.DateUtils;
+import com.fanneng.common.utils.FileUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,14 +36,14 @@ import java.util.Map;
  *
  * @author ms
  */
-public class CrashHandlerUtils implements UncaughtExceptionHandler {
+public class CrashHandler implements UncaughtExceptionHandler {
 
     public static String TAG = "CrashHandler";
     private static final String FILE_FORMAT = "yyyy-MM-dd_HH-mm-ss-sss";
 
     private UncaughtExceptionHandler mDefaultHandler;
 
-    private static final CrashHandlerUtils INSTANCE = new CrashHandlerUtils();
+    private static final CrashHandler INSTANCE = new CrashHandler();
     private Context mContext;
     private FinishCallback finishCallback;
 
@@ -52,7 +55,7 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
     private Map<String, String> infos = new HashMap<>();
 
     /** 保证只有一个CrashHandler实例 */
-    private CrashHandlerUtils() {
+    private CrashHandler() {
     }
 
     /**
@@ -63,7 +66,7 @@ public class CrashHandlerUtils implements UncaughtExceptionHandler {
     }
 
     /** 获取CrashHandler实例 ,单例模式 */
-    public static CrashHandlerUtils getInstance() {
+    public static CrashHandler getInstance() {
         return INSTANCE;
     }
 

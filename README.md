@@ -49,7 +49,7 @@ dependencies {
 }
 ```
 #### 3、继承common类
-* CommonApplication 初始化第三方框架
+###### CommonApplication 初始化第三方框架
 ```
 public class YourBaseApplication extend CommonApplication {
     ...
@@ -58,13 +58,13 @@ public class YourBaseApplication extend CommonApplication {
     };
 }
 ```
-* CommonActivity 初始化工具类
+###### CommonActivity 初始化工具类
 ```
 public class YourBaseActivity extend CommonActivity {
     ...
 }
 ```
-* CommonFragment 初始化工具类
+###### CommonFragment 初始化工具类
 ```
 public class YourBaseFragment extend CommonFragment {
     ...

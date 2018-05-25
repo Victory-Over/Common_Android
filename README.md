@@ -9,6 +9,7 @@ dependencies {
     }
 allprojects {
     repositories {
+        mavenCentral()
         maven { url "https://jitpack.io" }
         maven { url "https://source.enncloud.cn/FNMobileTeam/Common_Android/raw/master" }
     }
@@ -18,6 +19,8 @@ allprojects {
 * APP目录build.gradle文件添加如下配置：
 
 >>```
+apply plugin: 'com.jakewharton.butterknife'
+
 dependencies {
     implementation 'com.fanneng.android:common:1.0.0@aar'
 }

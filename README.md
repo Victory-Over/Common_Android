@@ -5,7 +5,7 @@
 
 >>```
 dependencies {
-        classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
     }
 allprojects {
     repositories {

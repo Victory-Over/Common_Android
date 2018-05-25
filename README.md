@@ -48,6 +48,7 @@ dependencies {
     <init>(java.lang.Throwable);
 }
 ```
+
 #### 3、继承common类
 >>CommonApplication 初始化第三方框架
 ```
@@ -76,7 +77,7 @@ public class YourBaseFragment extend CommonFragment {
 ## 二、功能介绍
 #### 1、utils工具类
 
-* AppContextUtils
+>>* AppContextUtils
 ```
 Context context = AppContextUtils.getContext();
 ```

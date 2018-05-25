@@ -85,8 +85,8 @@ Context context = AppContextUtils.getContext();
 引用ApplicationContext并不会导致内存泄漏。引用Activity的Context才会导致内存泄漏。
 
 
-* DateUtils</br>
-针对日期处理的Utils，包括日期的格式化、判断等操作
+* DateUtils
+</br>针对日期处理的Utils，包括日期的格式化、判断等操作
 
 
 * EventBusMsg</br>

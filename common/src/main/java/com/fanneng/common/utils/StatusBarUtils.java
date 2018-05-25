@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
 /**
  * @author luyufeng on 2018/5/8.
  */
-public class StatusBarUtil {
+public class StatusBarUtils {
 
     public static final int DEFAULT_STATUS_BAR_ALPHA = 0;
     private static final int FAKE_STATUS_BAR_VIEW_ID = R.id.statusbarutil_fake_status_bar_view;

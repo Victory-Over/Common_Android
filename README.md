@@ -10,6 +10,7 @@ allprojects {
         maven { url "https://source.enncloud.cn/FNMobileTeam/Common_Android/raw/master" }
     }
 }
+end
 ```
 ```ruby
 dependencies {
@@ -49,7 +50,7 @@ dependencies {
 }
 ```
 #### 3、继承common类
-##### ①、CommonApplication 初始化第三方框架
+* CommonApplication 初始化第三方框架
 ```ruby
 public class YourBaseApplication extend CommonApplication {
     ...
@@ -58,13 +59,13 @@ public class YourBaseApplication extend CommonApplication {
     };
 }
 ```
-##### ②、CommonActivity 初始化工具类
+* CommonActivity 初始化工具类
 ```ruby
 public class YourBaseActivity extend CommonActivity {
     ...
 }
 ```
-##### ③、CommonFragment 初始化工具类
+* CommonFragment 初始化工具类
 ```ruby
 public class YourBaseFragment extend CommonFragment {
     ...
@@ -120,7 +121,7 @@ SpUtils.removeAll();//删除所有保存的数据
 ```
 
 
-* StatusBarUtil<br>
+* StatusBarUtils<br>
 状态栏设置工具类，如果当前Activity/Fragment需要做特殊的状态栏处理则调用
 ```ruby
 StatusBarUtil.setColor(context, ContextCompat.getColor(context,R.color.xxxx));

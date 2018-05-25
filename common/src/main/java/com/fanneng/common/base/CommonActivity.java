@@ -3,7 +3,7 @@ package com.fanneng.common.base;
 import android.os.Bundle;
 
 import com.fanneng.common.utils.AppContextUtils;
-import com.fanneng.common.utils.StatusBarUtil;
+import com.fanneng.common.utils.StatusBarUtils;
 import com.fanneng.common.utils.ViewManagerUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
@@ -33,7 +33,7 @@ public class CommonActivity extends RxAppCompatActivity {
    * 初始化状态栏
    */
   protected void initStatusBar() {
-    StatusBarUtil.setLightMode(this);
+    StatusBarUtils.setLightMode(this);
   }
 
   @Override

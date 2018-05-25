@@ -90,7 +90,8 @@ Context context = AppContextUtils.getContext();
 
 
 * EventBusMsg
-</br>EventBus传递内容的封装，举个栗子：
+</br>
+EventBus传递内容的封装，举个栗子：
 ```ruby
 //tag:传递消息的标记
 //T:索要传递的对象
@@ -98,7 +99,8 @@ EventBus.getDefault().post(new EventBusMsg<T>(tag,T))
 ```
 
 
-* FileUtils</br>
+* FileUtils
+<br>
 针对文件处理的辅助工具类
 
 

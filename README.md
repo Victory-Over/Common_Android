@@ -77,8 +77,8 @@ public class YourBaseFragment extend CommonFragment {
 ## 二、功能介绍
 #### 1、utils工具类
 
->>* AppContextUtils
-```
+* AppContextUtils
+>>```
 Context context = AppContextUtils.getContext();
 ```
 可以获取全局Context对象

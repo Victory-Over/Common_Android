@@ -153,8 +153,8 @@ APIService.getInstance()
 ApiConfig.getInstance().setAppToken(app_token);
 ```
 
+<br>
 #### 2、utils工具类
-
 <br>
 
 * AppContextUtils
@@ -229,7 +229,7 @@ ViewManagerUtils.getInstance().finishAllActivity();
 //退出应用程序
 ViewManagerUtils.getInstance().exitApp(context);
 ```
-<br>
+<br><br>
 
 #### 3、所使用到的第三方框架
 * [网络请求 Retrofit](https://github.com/square/retrofit)

@@ -72,4 +72,13 @@ public class ToastUtils {
   }
 
 
+  /**
+   * 取消Toast
+   */
+  public static void cancel() {
+    if (toast != null) {
+      toast.cancel();
+    }
+  }
+
 }

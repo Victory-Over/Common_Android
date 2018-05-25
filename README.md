@@ -149,10 +149,10 @@ ViewManagerUtils.getInstance().finishAllActivity();
 ViewManagerUtils.getInstance().exitApp(context);
 ```
 
-#### 2、net 网络框架封装
+#### 2、 Net 网络框架封装
 * 如何使用<br>
-1、在你的Api层配置，以登录接口为例<br>
 
+>>>1、在你的Api层配置，以登录接口为例
 ```
     public interface BaseApis {
         /**
@@ -163,7 +163,7 @@ ViewManagerUtils.getInstance().exitApp(context);
     }
 ```
 
-2、在Service层提供访问方法
+>>>2、在Service层提供访问方法
 ```
 public class APIService extends BaseAPIService {
 
@@ -193,7 +193,7 @@ public class APIService extends BaseAPIService {
 }
 ```
 
-3、调用方法
+>>>3、调用方法
 ```
 APIService.getInstance()
         .postLogin(phoneNum, code)

@@ -8,9 +8,8 @@
 
     <application>
         <activity android:name=".base.CommonActivity" />
-        <meta-data
-            android:name="com.fanneng.common.image.glide"
-            android:value="GlideModule" />
+        <meta-data android:name="com.fanneng.common.image.glide.GlideCacheConfiguration"
+            android:value="GlideCache"/>
     </application>
 
 

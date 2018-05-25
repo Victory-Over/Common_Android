@@ -1,9 +1,12 @@
 package com.fanneng.common.image.glide;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 /**
  * @author ：王文彬 on 2018/5/24 17：10
@@ -19,14 +22,19 @@ public class GlideUtils {
    * @param url      图片地址
    * @param imgView  需要显示的图片
    */
+  @SuppressLint("CheckResult")
   public static void show(Context context, int errorImg, String url,
                           ImageView imgView) {
-    GlideApp.with(context)
-        .load(url)
+
+    RequestOptions options = new RequestOptions();
+    options.centerCrop()
         .placeholder(errorImg)
-        .error(errorImg)
         .centerCrop()
-        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+        .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+
+    Glide.with(context)
+        .load(url)
+        .apply(options)
         .into(imgView);
   }
 }

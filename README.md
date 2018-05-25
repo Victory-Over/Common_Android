@@ -89,8 +89,8 @@ Context context = AppContextUtils.getContext();
 </br>针对日期处理的Utils，包括日期的格式化、判断等操作
 
 
-* EventBusMsg</br>
-EventBus传递内容的封装，举个栗子：
+* EventBusMsg
+</br>EventBus传递内容的封装，举个栗子：
 ```ruby
 //tag:传递消息的标记
 //T:索要传递的对象

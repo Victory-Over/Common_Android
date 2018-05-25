@@ -151,7 +151,6 @@ ViewManagerUtils.getInstance().exitApp(context);
 
 #### 2、net 网络框架封装
 * 如何使用<br>
-
 1、在你的Api层配置，以登录接口为例
 ```
     public interface BaseApis {

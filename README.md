@@ -152,7 +152,7 @@ ViewManagerUtils.getInstance().exitApp(context);
 #### 2、 Net 网络框架封装
 * 如何使用<br>
 
->>>1、在你的Api层配置，以登录接口为例
+>>1、在你的Api层配置，以登录接口为例
 ```
     public interface BaseApis {
         /**
@@ -163,7 +163,7 @@ ViewManagerUtils.getInstance().exitApp(context);
     }
 ```
 
->>>2、在Service层提供访问方法
+>>2、在Service层提供访问方法
 ```
 public class APIService extends BaseAPIService {
 
@@ -193,7 +193,7 @@ public class APIService extends BaseAPIService {
 }
 ```
 
->>>3、调用方法
+>>3、调用方法
 ```
 APIService.getInstance()
         .postLogin(phoneNum, code)
@@ -219,7 +219,19 @@ APIService.getInstance()
         });
 ```
 
+>>4、如果App接口要使用token访问，则需要在登录之后设置token
+```
+ApiConfig.getInstance().setAppToken(token);
+```
 
 
-2. 第三方框架
-[网络请求框架 Retrofit](https://github.com/square/retrofit)
+
+#### 3、所使用到的第三方框架
+* [网络请求 Retrofit](https://github.com/square/retrofit)
+* [网络请求 OKHttp](https://github.com/square/okhttp)
+* [网络请求 RxAndroid](https://github.com/ReactiveX/RxAndroid)
+* [注解 ButterKnife](https://github.com/JakeWharton/butterknife)
+* [图表 MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
+* [通信 EventBus](https://github.com/greenrobot/EventBus)
+* [内存检测 LeakCanary](https://github.com/square/leakcanary)
+

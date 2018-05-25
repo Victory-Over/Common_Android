@@ -1,7 +1,7 @@
 # Common_Android
 ## 一、使用
 #### 1、添加依赖和配置
-```Java
+```
 allprojects {
     repositories {
         google()
@@ -11,14 +11,14 @@ allprojects {
     }
 }
 ```
-```Java
+```
 dependencies {
     implementation 'com.fanneng.android:common:1.0.0@aar'
 }
 ```
 
 #### 2、添加混淆
-```Java
+```
 #Retrofit2
 -keepattributes Signature
 #Retain service method parameters.
@@ -77,7 +77,7 @@ public class YourBaseFragment extend CommonFragment {
 #### utils工具类
 
 * AppContextUtils
-```Java
+```
 Context context = AppContextUtils.getContext();
 ```
 可以获取全局Context对象
@@ -91,7 +91,7 @@ Context context = AppContextUtils.getContext();
 
 * EventBusMsg<br>
 EventBus传递内容的封装，举个栗子：
-```Java
+```
 //tag:传递消息的标记
 //T:索要传递的对象
 EventBus.getDefault().post(new EventBusMsg<T>(tag,T))
@@ -112,7 +112,7 @@ Log打印工具类，只会在Debug模式下才会打印出来
 
 * SpUtils<br>
 Sharepreference工具类
-```Java
+```
 SpUtils.setXXX(String key, Object value);//设置数据
 SpUtils.getXXX(String key);//获取数据
 SpUtils.remove(String key);//删除某个数据
@@ -122,7 +122,7 @@ SpUtils.removeAll();//删除所有保存的数据
 
 * StatusBarUtils<br>
 状态栏设置工具类，如果当前Activity/Fragment需要做特殊的状态栏处理则调用
-```Java
+```
 StatusBarUtil.setColor(context, ContextCompat.getColor(context,R.color.xxxx));
 //如果设置的背景与状态栏字体颜色有冲突，例如状态栏背景颜色和字体颜色都是蓝色，
 //则需要在setColor之前调用
@@ -135,14 +135,14 @@ StatusBarUtil.setLightMode(MainActivity.this);
 
 * ToastUtils<br>
 Toast工具类，已针对重复Toast做处理
-```Java
+```
 ToastUtils.show(String msg);
 ```
 
 
 * ViewManagerUtils<br>
 Activity和Fragment的管理工具类
-```Java
+```
 //退出所有Activity
 ViewManagerUtils.getInstance().finishAllActivity();
 //退出应用程序

@@ -74,7 +74,7 @@ public class YourBaseFragment extend CommonFragment {
 <br><br><br>
 
 ## 二、功能介绍
-#### utils工具类
+#### 1、utils工具类
 
 * AppContextUtils
 ```
@@ -148,6 +148,74 @@ ViewManagerUtils.getInstance().finishAllActivity();
 //退出应用程序
 ViewManagerUtils.getInstance().exitApp(context);
 ```
+
+#### 2、net 网络框架封装
+* 如何使用<br>
+1、在你的Api层配置，以登录接口为例
+```
+    public interface BaseApis {
+        /**
+         * 登陆接口
+         */
+        @POST(HEAD_HOST + "user/login")
+        Observable<UserInfo> postLogin(@Body Map<String, Object> map);
+    }
+```
+2、在Service层提供访问方法
+```
+public class APIService extends BaseAPIService {
+
+  private final BaseApis mBaseApis;
+
+  private APIService() {
+    mBaseApis = RetrofitFactory.getInstance().create(BaseApis.class);
+  }
+
+  private static class APIServiceHolder {
+    private static final APIService INSTANCE = new APIService();
+  }
+
+  public static final APIService getInstance() {
+    return APIServiceHolder.INSTANCE;
+  }
+
+  //登陆接口
+  public Observable<UserInfo> postLogin(String username, String code) {
+    Map<String, Object> map = new HashMap<>();
+    map.put("username", username);
+    map.put("password", code);
+    map.put("equipment", PhoneOnlyNumber.getPhoneOnlyID());
+    map.put("equipType", "android");
+    return mBaseApis.postLogin(map);
+  }
+}
+```
+3、调用方法
+```
+ APIService.getInstance()
+        .postLogin(phoneNum, code)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .compose(activity.<UserInfo>bindToLifecycle())
+        .subscribe(new BaseObserver<UserInfo>() {
+          @Override
+          public void onSuccess(UserInfo response) {
+              v.loginSuccessful(response.getData());
+          }
+
+          @Override
+          public void onError(Throwable e) {
+              v.showMsg(e.toString());
+          }
+
+          @Override
+          public void onFail(UserInfo response) {
+              v.showMsg(response.getMsg());
+          }
+
+        });
+```
+
 
 
 2. 第三方框架

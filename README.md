@@ -1,7 +1,7 @@
 # Common_Android
 ## 一、使用
 #### 1、添加依赖和配置
-```android
+```java
 allprojects {
     repositories {
         google()
@@ -142,7 +142,7 @@ ToastUtils.show(String msg);
 
 * ViewManagerUtils<br>
 Activity和Fragment的管理工具类
-```android
+```java
 //退出所有Activity
 ViewManagerUtils.getInstance().finishAllActivity();
 //退出应用程序

@@ -8,8 +8,7 @@ import com.fanneng.common.utils.ViewManagerUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
-
-import butterknife.ButterKnife;
+import org.greenrobot.eventbus.Subscribe;
 
 
 /**
@@ -23,7 +22,6 @@ public class CommonActivity extends RxAppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     initStatusBar();
-    ButterKnife.bind(this);
     AppContextUtils.init(this);
     ViewManagerUtils.getInstance().addActivity(this);
     EventBus.getDefault().register(this);
@@ -36,9 +34,13 @@ public class CommonActivity extends RxAppCompatActivity {
     StatusBarUtils.setLightMode(this);
   }
 
+  @Subscribe
+  public void onEvent(String event){
+  }
   @Override
   protected void onDestroy() {
     super.onDestroy();
     EventBus.getDefault().unregister(this);
+    EventBus.getDefault().removeAllStickyEvents();
   }
 }

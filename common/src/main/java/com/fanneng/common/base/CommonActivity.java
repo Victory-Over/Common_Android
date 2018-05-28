@@ -7,8 +7,7 @@ import com.fanneng.common.utils.StatusBarUtils;
 import com.fanneng.common.utils.ViewManagerUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
+import org.simple.eventbus.EventBus;
 
 
 /**
@@ -34,13 +33,12 @@ public class CommonActivity extends RxAppCompatActivity {
     StatusBarUtils.setLightMode(this);
   }
 
-  @Subscribe
-  public void onEvent(String event){
-  }
   @Override
   protected void onDestroy() {
     super.onDestroy();
+    if (!EventBus.getDefault().getStickyEvents().isEmpty()) {
+      EventBus.getDefault().getStickyEvents().clear();
+    }
     EventBus.getDefault().unregister(this);
-    EventBus.getDefault().removeAllStickyEvents();
   }
 }

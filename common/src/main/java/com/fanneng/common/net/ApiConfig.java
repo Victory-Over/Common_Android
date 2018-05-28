@@ -12,7 +12,7 @@ import com.fanneng.common.utils.SpUtils;
 
 public class ApiConfig {
 
-  public static final int DEFAULT_TIMEOUT = 5000;
+  public int default_timeout = 5000;
 
   private static final String APP_TOKEN = "app_token";
 
@@ -42,6 +42,9 @@ public class ApiConfig {
     return baseUrl;
   }
 
+  /**
+   * 修改token
+   */
   public void setAppToken(String token) {
     SpUtils.setString(APP_TOKEN, token);
   }
@@ -50,5 +53,14 @@ public class ApiConfig {
     return SpUtils.getString(APP_TOKEN);
   }
 
+  /**
+   * 修改响应超时时间
+   */
+  public void setDefaultTimeout(int defaultTime) {
+    this.default_timeout = defaultTime;
+  }
 
+  public int getDefaultTimeout() {
+    return default_timeout;
+  }
 }

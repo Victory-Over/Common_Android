@@ -1,17 +1,17 @@
 package com.fanneng.common.net;
 
+import com.google.gson.JsonParseException;
+
 import android.app.Activity;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.fanneng.common.R;
 import com.fanneng.common.customview.dialog.CustomProgressDialogUtils;
-import com.fanneng.common.utils.EventBusMsg;
 import com.fanneng.common.utils.ToastUtils;
-import com.google.gson.JsonParseException;
 
-import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
+import org.simple.eventbus.EventBus;
 
 import java.io.InterruptedIOException;
 import java.net.ConnectException;
@@ -35,6 +35,7 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
   private boolean mShowLoading = false;
   private CustomProgressDialogUtils progressDialogUtils;
   private static final String TOKEN_INVALID_TAG = "token_invalid";
+  private static final String QUIT_APP = "quit_app";
 
   public BaseObserver() {
   }
@@ -66,7 +67,7 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
         e.printStackTrace();
       }
     } else if (response.getTokenInvalid() == response.getCode()) {
-      EventBus.getDefault().post(new EventBusMsg<>(TOKEN_INVALID_TAG));
+      EventBus.getDefault().post(QUIT_APP, TOKEN_INVALID_TAG);
     } else {
       try {
         onFailing(response);

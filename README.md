@@ -173,7 +173,7 @@ Context context = AppContextUtils.getContext();
 可以获取全局Context对象
 注意：凡是跟UI相关的，都应该使用Activity做为Context来处理（Dialog、startActivity、Layout Inflation）；其他的一些操作可以使用ApplicationContext，
 引用ApplicationContext并不会导致内存泄漏。引用Activity的Context才会导致内存泄漏。
-
+#如果您是继承CommonActivity的，那么您可以在您的app中调用AppContextUtils.getActivity()可以获取到当前Activity对象。
 
 * DateUtils<br>
 >>针对日期处理的Utils，包括日期的格式化、判断等操作
@@ -184,7 +184,17 @@ Context context = AppContextUtils.getContext();
 ```
 //tag:传递消息的标记
 //T:索要传递的对象
-EventBus.getDefault().post(new EventBusMsg<T>(tag,T))
+1.EventBus.getDefault().post(new EventBusMsg<T>(tag,T))
+2.一个FirstActivity跳转到另一个SecondActivity发送事件
+FirstActivity中发送事件：EventBus.getDefault().postSticky(new EventBusMsg<T>(tag,T));
+SecondActivity接收事件：
+@Subscribe(sticky = true, threadMode = ThreadMode.MAIN_ORDERED)
+public void getMsg(EventBusMsg msg) {
+if (tag.equals(msg.getTag())) {
+ you can do your what you want...
+}
+}
+
 ```
 
 

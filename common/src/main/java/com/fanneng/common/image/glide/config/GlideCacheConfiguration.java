@@ -1,4 +1,4 @@
-package com.fanneng.common.image.glide;
+package com.fanneng.common.image.glide.config;
 
 import android.content.Context;
 

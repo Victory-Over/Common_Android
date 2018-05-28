@@ -1,4 +1,4 @@
-package com.fanneng.common.image.glide;
+package com.fanneng.common.image.glide.config;
 
 /**
  * @author ：王文彬 on 2018/5/24 17：26

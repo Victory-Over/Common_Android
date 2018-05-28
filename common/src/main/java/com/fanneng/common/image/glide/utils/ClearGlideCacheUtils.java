@@ -1,9 +1,10 @@
-package com.fanneng.common.image.glide;
+package com.fanneng.common.image.glide.utils;
 
 import android.content.Context;
 import android.os.Looper;
 
 import com.bumptech.glide.Glide;
+import com.fanneng.common.image.glide.config.GlideConfig;
 import com.fanneng.common.utils.FileUtils;
 import com.fanneng.common.utils.FormatSizeUtils;
 

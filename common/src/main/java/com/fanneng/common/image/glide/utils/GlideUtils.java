@@ -1,8 +1,6 @@
 package com.fanneng.common.image.glide.utils;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
-import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -11,6 +9,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.fanneng.common.image.glide.config.GlideCircleTransform;
 import com.fanneng.common.image.glide.config.RoundedRectanglesTransformation;
+import com.fanneng.common.utils.AppContextUtils;
 
 /**
  * @author ：王文彬 on 2018/5/24 17：10
@@ -21,13 +20,12 @@ public class GlideUtils {
 
 
   /**
-   * @param context  上下文
    * @param errorImg 错误和占位符图片
    * @param url      图片地址
    * @param imgView  需要显示的图片
    */
   @SuppressLint("CheckResult")
-  public static void show(Context context, int errorImg, String url, ImageView imgView) {
+  public static void show(int errorImg, String url, ImageView imgView) {
 
     RequestOptions options = new RequestOptions();
     options.centerCrop()
@@ -36,20 +34,19 @@ public class GlideUtils {
         .centerCrop()
         .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
 
-    Glide.with(context)
+    Glide.with(AppContextUtils.getActivity())
         .load(url)
         .apply(options)
         .into(imgView);
   }
 
   /**
-   * @param context  上下文
    * @param errorImg 错误和占位符图片
    * @param path     图片地址(drawable、mipmap下的图片)
    * @param imgView  需要显示的图片
    */
   @SuppressLint("CheckResult")
-  public static void show(Context context, int errorImg, int path, ImageView imgView) {
+  public static void show(int errorImg, int path, ImageView imgView) {
 
     RequestOptions options = new RequestOptions();
     options.centerCrop()
@@ -58,7 +55,7 @@ public class GlideUtils {
         .centerCrop()
         .skipMemoryCache(true);
 
-    Glide.with(context)
+    Glide.with(AppContextUtils.getActivity())
         .load(path)
         .apply(options)
         .into(imgView);
@@ -74,7 +71,7 @@ public class GlideUtils {
    * @param imgView  组件
    */
   @SuppressLint("CheckResult")
-  public static void showCircle(Application context, int errorImg, String url, ImageView imgView) {
+  public static void showCircle(int errorImg, String url, ImageView imgView) {
 
     RequestOptions options = new RequestOptions();
     options.centerCrop()
@@ -85,7 +82,7 @@ public class GlideUtils {
         .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
 
 
-    Glide.with(context).load(url)
+    Glide.with(AppContextUtils.getActivity()).load(url)
         .apply(options)
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(imgView);
@@ -96,13 +93,12 @@ public class GlideUtils {
   /**
    * 圆角
    *
-   * @param context  上下文
    * @param errorImg 错误的资源图片
    * @param path     图片地址
    * @param imgView  组件
    */
   @SuppressLint("CheckResult")
-  public static void showCircle(Application context, int errorImg, int path, ImageView imgView) {
+  public static void showCircle(int errorImg, int path, ImageView imgView) {
 
     RequestOptions options = new RequestOptions();
     options.centerCrop()
@@ -112,7 +108,7 @@ public class GlideUtils {
         .centerCrop();
 
 
-    Glide.with(context).load(path)
+    Glide.with(AppContextUtils.getActivity()).load(path)
         .apply(options)
         .into(imgView);
 
@@ -123,14 +119,12 @@ public class GlideUtils {
   /**
    * 矩形圆角
    *
-   * @param context  上下文
    * @param errorImg 错误的资源图片
    * @param url      图片地址
    * @param imgView  组件
    */
   @SuppressLint("CheckResult")
-  public static void showImageViewToRoundedCorners(Application context, int errorImg,
-                                                   String url, ImageView imgView) {
+  public static void showImageViewToRoundedCorners(int errorImg, String url, ImageView imgView) {
 
 
     RequestOptions options = new RequestOptions();
@@ -141,7 +135,7 @@ public class GlideUtils {
         .centerCrop()
         .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
 
-    Glide.with(context).load(url)
+    Glide.with(AppContextUtils.getActivity()).load(url)
         .apply(options)
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(imgView);

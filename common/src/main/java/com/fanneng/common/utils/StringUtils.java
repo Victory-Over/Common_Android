@@ -69,7 +69,7 @@ public class StringUtils {
     return TextUtils.isEmpty(getString(tv));
   }
 
-  public static long lastClickTime = 0;
+  private static long lastClickTime = 0;
 
   /**
    * 返回true 可以点击

@@ -3,12 +3,7 @@ package com.fanneng.common.image.glide.utils;
 import android.annotation.SuppressLint;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.bumptech.glide.request.RequestOptions;
-import com.fanneng.common.image.glide.config.GlideCircleTransform;
-import com.fanneng.common.image.glide.config.RoundedRectanglesTransformation;
+import com.fanneng.common.image.glide.config.GlideApp;
 import com.fanneng.common.utils.AppContextUtils;
 
 /**
@@ -27,7 +22,7 @@ public class GlideUtils {
   @SuppressLint("CheckResult")
   public static void show(int errorImg, String url, ImageView imgView) {
 
-    RequestOptions options = new RequestOptions();
+/*    RequestOptions options = new RequestOptions();
     options.placeholder(errorImg)
         .error(errorImg)
         .centerCrop()
@@ -36,6 +31,14 @@ public class GlideUtils {
     Glide.with(AppContextUtils.getActivity())
         .load(url)
         .apply(options)
+        .into(imgView);*/
+
+    GlideApp.with(AppContextUtils.getActivity())
+        .load(url)
+        .placeholder(errorImg)
+        .error(errorImg)
+        .dontAnimate()
+        .centerCrop()
         .into(imgView);
   }
 
@@ -43,7 +46,7 @@ public class GlideUtils {
    * @param errorImg 错误和占位符图片
    * @param path     图片地址(drawable、mipmap下的图片)
    * @param imgView  需要显示的图片
-   */
+   *//*
   @SuppressLint("CheckResult")
   public static void show(int errorImg, int path, ImageView imgView) {
 
@@ -60,13 +63,13 @@ public class GlideUtils {
   }
 
 
-  /**
+  *//**
    * 圆角
    *
    * @param errorImg 错误的资源图片
    * @param url      图片链接
    * @param imgView  组件
-   */
+   *//*
   @SuppressLint("CheckResult")
   public static void showCircle(int errorImg, String url, ImageView imgView) {
 
@@ -86,13 +89,13 @@ public class GlideUtils {
 
   }
 
-  /**
+  *//**
    * 圆角
    *
    * @param errorImg 错误的资源图片
    * @param path     图片地址
    * @param imgView  组件
-   */
+   *//*
   @SuppressLint("CheckResult")
   public static void showCircle(int errorImg, int path, ImageView imgView) {
 
@@ -111,13 +114,13 @@ public class GlideUtils {
   }
 
 
-  /**
+  *//**
    * 矩形圆角
    *
    * @param errorImg 错误的资源图片
    * @param url      图片地址
    * @param imgView  组件
-   */
+   *//*
   @SuppressLint("CheckResult")
   public static void showImageViewToRoundedCorners(int errorImg, String url, ImageView imgView) {
 
@@ -133,6 +136,6 @@ public class GlideUtils {
         .apply(options)
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(imgView);
-  }
+  }*/
 
 }

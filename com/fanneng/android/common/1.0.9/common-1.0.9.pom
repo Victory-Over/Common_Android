@@ -98,12 +98,6 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.android.support</groupId>
-      <artifactId>support-v4</artifactId>
-      <version>27.1.1</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>com.squareup.leakcanary</groupId>
       <artifactId>leakcanary-android-no-op</artifactId>
       <version>1.5.1</version>

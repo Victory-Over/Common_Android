@@ -28,8 +28,7 @@ public class GlideUtils {
   public static void show(int errorImg, String url, ImageView imgView) {
 
     RequestOptions options = new RequestOptions();
-    options.centerCrop()
-        .placeholder(errorImg)
+    options.placeholder(errorImg)
         .error(errorImg)
         .centerCrop()
         .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
@@ -49,8 +48,7 @@ public class GlideUtils {
   public static void show(int errorImg, int path, ImageView imgView) {
 
     RequestOptions options = new RequestOptions();
-    options.centerCrop()
-        .placeholder(errorImg)
+    options.placeholder(errorImg)
         .error(errorImg)
         .centerCrop()
         .skipMemoryCache(true);
@@ -65,7 +63,6 @@ public class GlideUtils {
   /**
    * 圆角
    *
-   * @param context  上下文
    * @param errorImg 错误的资源图片
    * @param url      图片链接
    * @param imgView  组件
@@ -74,8 +71,7 @@ public class GlideUtils {
   public static void showCircle(int errorImg, String url, ImageView imgView) {
 
     RequestOptions options = new RequestOptions();
-    options.centerCrop()
-        .placeholder(errorImg)
+    options.placeholder(errorImg)
         .error(errorImg)
         .transform(new GlideCircleTransform())
         .centerCrop()
@@ -101,8 +97,7 @@ public class GlideUtils {
   public static void showCircle(int errorImg, int path, ImageView imgView) {
 
     RequestOptions options = new RequestOptions();
-    options.centerCrop()
-        .placeholder(errorImg)
+    options.placeholder(errorImg)
         .error(errorImg)
         .transform(new GlideCircleTransform())
         .centerCrop();
@@ -128,8 +123,7 @@ public class GlideUtils {
 
 
     RequestOptions options = new RequestOptions();
-    options.centerCrop()
-        .placeholder(errorImg)
+    options.placeholder(errorImg)
         .error(errorImg)
         .transform(new RoundedRectanglesTransformation(35, 0, RoundedRectanglesTransformation.CornerType.ALL))
         .centerCrop()

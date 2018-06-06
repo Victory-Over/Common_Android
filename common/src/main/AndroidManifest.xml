@@ -7,10 +7,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <application>
+    <!--<application>
         <meta-data android:name="com.fanneng.common.image.glide.config.GlideCacheConfiguration"
             android:value="GlideCache"/>
-    </application>
+    </application>-->
 
 
 

@@ -1,27 +1,14 @@
 package com.fanneng.common.image.glide.config;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.support.annotation.NonNull;
-
-import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
-import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
-
-import java.security.MessageDigest;
-
 /**
  * @author ：王文彬 on 2018/5/25 18：15
  * @describe： 圆角图片处理
  * @email：wwb199055@126.com
  */
-public class RoundedRectanglesTransformation extends BitmapTransformation {
+public class RoundedRectanglesTransformation /*extends BitmapTransformation */{
 
 
-  @Override
+  /*@Override
   protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
     int width = toTransform.getWidth();
     int height = toTransform.getHeight();
@@ -224,5 +211,5 @@ public class RoundedRectanglesTransformation extends BitmapTransformation {
   @Override
   public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
     messageDigest.update(("" + radius + diameter + margin + cornerType).getBytes(CHARSET));
-  }
+  }*/
 }

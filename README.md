@@ -4,14 +4,11 @@
 * 根目录build.gradle文件添加如下配置：
 
 >>```
-dependencies {
-        classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
-    }
 allprojects {
     repositories {
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven { url "https://source.enncloud.cn/FNMobileTeam/Common_Android/raw/master" }
+        maven { url "https://source.enncloud.cn/FNMobileTeam/Common_Android/raw/master/common" }
     }
 }
 ```
@@ -19,10 +16,8 @@ allprojects {
 * APP目录build.gradle文件添加如下配置：
 
 >>```
-apply plugin: 'com.jakewharton.butterknife'
-
 dependencies {
-    implementation 'com.fanneng.android:common:1.0.0@aar'
+    implementation 'com.fanneng.android:common:1.1.2'
 }
 ```
 

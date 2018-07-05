@@ -178,19 +178,16 @@ Context context = AppContextUtils.getContext();
 * DateUtils<br>
 >>针对日期处理的Utils，包括日期的格式化、判断等操作
 
-
-* EventBusMsg<br>
 >>EventBus传递内容的封装，举个栗子：
 ```
 //tag:传递消息的标记
 //T:索要传递的对象
-1.EventBus.getDefault().post(new EventBusMsg<T>(tag,T))
-2.一个FirstActivity跳转到另一个SecondActivity发送事件
-FirstActivity中发送事件：EventBus.getDefault().postSticky(new EventBusMsg<T>(tag,T));
+1.EventBus.getDefault().post(event,tag)
+
 SecondActivity接收事件：
-@Subscribe(sticky = true, threadMode = ThreadMode.MAIN_ORDERED)
+@Subscribe(tag)
 public void getMsg(EventBusMsg msg) {
-if (tag.equals(msg.getTag())) {
+if (msg!=null) {
  you can do your what you want...
 }
 }

@@ -8,7 +8,6 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,35 +86,35 @@ public class StatusBarUtils {
      */
     public static void setColorForSwipeBack(Activity activity, @ColorInt int color,
                                             @IntRange(from = 0, to = 255) int statusBarAlpha) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-
-            ViewGroup contentView = activity.findViewById(android.R.id.content);
-            View rootView = contentView.getChildAt(0);
-            int statusBarHeight = getStatusBarHeight(activity);
-            if (rootView != null && rootView instanceof CoordinatorLayout) {
-                final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) rootView;
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                    coordinatorLayout.setFitsSystemWindows(false);
-                    contentView.setBackgroundColor(calculateStatusColor(color, statusBarAlpha));
-                    boolean isNeedRequestLayout = contentView.getPaddingTop() < statusBarHeight;
-                    if (isNeedRequestLayout) {
-                        contentView.setPadding(0, statusBarHeight, 0, 0);
-                        coordinatorLayout.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                coordinatorLayout.requestLayout();
-                            }
-                        });
-                    }
-                } else {
-                    coordinatorLayout.setStatusBarBackgroundColor(calculateStatusColor(color, statusBarAlpha));
-                }
-            } else {
-                contentView.setPadding(0, statusBarHeight, 0, 0);
-                contentView.setBackgroundColor(calculateStatusColor(color, statusBarAlpha));
-            }
-            setTransparentForWindow(activity);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//
+//            ViewGroup contentView = activity.findViewById(android.R.id.content);
+//            View rootView = contentView.getChildAt(0);
+//            int statusBarHeight = getStatusBarHeight(activity);
+//            if (rootView != null && rootView instanceof CoordinatorLayout) {
+//                final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) rootView;
+//                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+//                    coordinatorLayout.setFitsSystemWindows(false);
+//                    contentView.setBackgroundColor(calculateStatusColor(color, statusBarAlpha));
+//                    boolean isNeedRequestLayout = contentView.getPaddingTop() < statusBarHeight;
+//                    if (isNeedRequestLayout) {
+//                        contentView.setPadding(0, statusBarHeight, 0, 0);
+//                        coordinatorLayout.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                coordinatorLayout.requestLayout();
+//                            }
+//                        });
+//                    }
+//                } else {
+//                    coordinatorLayout.setStatusBarBackgroundColor(calculateStatusColor(color, statusBarAlpha));
+//                }
+//            } else {
+//                contentView.setPadding(0, statusBarHeight, 0, 0);
+//                contentView.setBackgroundColor(calculateStatusColor(color, statusBarAlpha));
+//            }
+//            setTransparentForWindow(activity);
+//        }
     }
 
     /**

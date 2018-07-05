@@ -30,9 +30,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    //design
-    implementation 'com.android.support:design:27.1.1'
     //RxJava
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.14-RC1'
@@ -47,9 +44,6 @@ dependencies {
     implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.1'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.1'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
-    //ButterKnife
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //EventBus
     implementation 'org.simple:androideventbus:1.0.5.1'
     //LeakCanary
@@ -72,8 +66,8 @@ uploadArchives {
 }
 
 task makeJar(type: Copy) {
-    from('build/intermediates/bundles/release/') //这行表示要打包的文件的路径，根据下面的内容，其实是该路径下的classes.jar
-    into(JAR_LOCAL_URL + VERSION + '/')  //这行表示打包完毕后包的生成路径，也就是生成的包存在哪
-    include('classes.jar')  //看到这行，如果你对分包有了解的话，你就可以看出来这行它只是将一些类打包了
+    from('build/intermediates/bundles/release/')
+    into(JAR_LOCAL_URL + VERSION + '/')
+    include('classes.jar')
     rename('classes.jar', POM_ARTIFACT_ID + "-" + VERSION + ".jar")
 }

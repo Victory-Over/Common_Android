@@ -20,6 +20,4 @@ public class CommonFragment extends RxFragment {
     RxAppCompatActivity mContext = (RxAppCompatActivity) getActivity();
     AppContextUtils.init(mContext);
   }
-
-
 }

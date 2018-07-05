@@ -14,7 +14,7 @@ public class ApiConfig {
 
   public int default_timeout = 5000;
 
-  private static final String APP_TOKEN = "app_token";
+  public static final String APP_TOKEN = "app_token";
 
   private static ApiConfig instance = null;
 

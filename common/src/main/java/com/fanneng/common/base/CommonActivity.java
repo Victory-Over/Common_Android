@@ -23,7 +23,7 @@ public class CommonActivity extends RxAppCompatActivity {
     initStatusBar();
     AppContextUtils.init(this);
     ViewManagerUtils.getInstance().addActivity(this);
-    //EventBus.getDefault().register(this);
+    EventBus.getDefault().registerSticky(this);
   }
 
   /**

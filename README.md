@@ -4,9 +4,6 @@
 * 根目录build.gradle文件添加如下配置：
 
 >>```
-dependencies {
-        classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
-    }
 allprojects {
     repositories {
         mavenCentral()
@@ -19,8 +16,6 @@ allprojects {
 * APP目录build.gradle文件添加如下配置：
 
 >>```
-apply plugin: 'com.jakewharton.butterknife'
-
 dependencies {
     implementation 'com.fanneng.android:common:1.1.2'
 }

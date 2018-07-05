@@ -4,13 +4,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.fanneng.android</groupId>
   <artifactId>common</artifactId>
-  <version>1.0.1</version>
+  <version>1.1.2</version>
   <packaging>aar</packaging>
   <dependencies>
     <dependency>
       <groupId>com.android.support</groupId>
       <artifactId>design</artifactId>
-      <version>26.1.0</version>
+      <version>27.1.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -80,21 +80,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.PhilJay</groupId>
-      <artifactId>MPAndroidChart</artifactId>
-      <version>v3.0.3</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.greenrobot</groupId>
-      <artifactId>eventbus</artifactId>
-      <version>3.1.1</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.bumptech.glide</groupId>
-      <artifactId>glide</artifactId>
-      <version>4.7.1</version>
+      <groupId>org.simple</groupId>
+      <artifactId>androideventbus</artifactId>
+      <version>1.0.5.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

@@ -1,15 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
-uploadArchives {
-    repositories.mavenDeployer {
-        repository(url: LOCAL_REPO_URL)
-        pom.groupId = GROUP
-        pom.artifactId = POM_ARTIFACT_ID
-        pom.version = VERSION
-    }
-}
-
 android {
     compileSdkVersion 27
 
@@ -59,8 +50,6 @@ dependencies {
     //ButterKnife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    //MPAndroidChart
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     //EventBus
     implementation 'org.simple:androideventbus:1.0.5.1'
     //LeakCanary
@@ -70,4 +59,21 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'*/
 
+}
+
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: LOCAL_REPO_URL)
+        pom.groupId = GROUP
+        pom.artifactId = POM_ARTIFACT_ID
+        pom.version = VERSION
+    }
+}
+
+task makeJar(type: Copy) {
+    from('build/intermediates/bundles/release/') //这行表示要打包的文件的路径，根据下面的内容，其实是该路径下的classes.jar
+    into(JAR_LOCAL_URL + VERSION + '/')  //这行表示打包完毕后包的生成路径，也就是生成的包存在哪
+    include('classes.jar')  //看到这行，如果你对分包有了解的话，你就可以看出来这行它只是将一些类打包了
+    rename('classes.jar', POM_ARTIFACT_ID + "-" + VERSION + ".jar")
 }

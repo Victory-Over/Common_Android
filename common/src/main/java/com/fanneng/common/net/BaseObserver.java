@@ -1,14 +1,12 @@
 package com.fanneng.common.net;
 
-import com.google.gson.JsonParseException;
-
 import android.app.Activity;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.fanneng.common.R;
-import com.fanneng.common.customview.dialog.CustomProgressDialogUtils;
 import com.fanneng.common.utils.ToastUtils;
+import com.google.gson.JsonParseException;
 
 import org.json.JSONException;
 import org.simple.eventbus.EventBus;
@@ -33,7 +31,6 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
 
   private Activity mContext;
   private boolean mShowLoading = false;
-  private CustomProgressDialogUtils progressDialogUtils;
   private static final String TOKEN_INVALID_TAG = "token_invalid";
   private static final String QUIT_APP = "quit_app";
 
@@ -52,14 +49,12 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
 
   @Override
   public void onSubscribe(Disposable d) {
-    onRequestStart();
   }
 
 
   @Override
   public void onNext(T response) {
 
-    onRequestEnd();
     if (response.isSuccess()) {
       try {
         onSuccess(response);
@@ -80,7 +75,6 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
 
   @Override
   public void onError(Throwable e) {
-    onRequestEnd();
     if (e instanceof retrofit2.HttpException) {
       //HTTP错误
       onException(ExceptionReason.BAD_NETWORK);
@@ -126,7 +120,6 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
 
   @Override
   public void onComplete() {
-    onRequestEnd();
   }
 
   /**
@@ -177,36 +170,4 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
     UNKNOWN_ERROR
   }
 
-  /**
-   * 网络请求开始
-   */
-  private void onRequestStart() {
-    if (mShowLoading) {
-      showProgressDialog();
-    }
-  }
-
-  /**
-   * 网络请求结束
-   */
-  private void onRequestEnd() {
-    closeProgressDialog();
-  }
-
-  /**
-   * 开启Dialog
-   */
-  private void showProgressDialog() {
-    progressDialogUtils = new CustomProgressDialogUtils();
-    progressDialogUtils.showProgress(mContext, "Loading...");
-  }
-
-  /**
-   * 关闭Dialog
-   */
-  private void closeProgressDialog() {
-    if (progressDialogUtils != null) {
-      progressDialogUtils.dismissProgress();
-    }
-  }
 }

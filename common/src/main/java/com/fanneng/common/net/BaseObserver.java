@@ -1,12 +1,12 @@
 package com.fanneng.common.net;
 
+import com.google.gson.JsonParseException;
+
 import android.app.Activity;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.fanneng.common.R;
 import com.fanneng.common.utils.ToastUtils;
-import com.google.gson.JsonParseException;
 
 import org.json.JSONException;
 import org.simple.eventbus.EventBus;
@@ -33,6 +33,13 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
   private boolean mShowLoading = false;
   private static final String TOKEN_INVALID_TAG = "token_invalid";
   private static final String QUIT_APP = "quit_app";
+  private static final String CONNECT_ERROR = "网络连接失败,请检查网络";
+  private static final String CONNECT_TIMEOUT = "连接超时,请稍后再试";
+  private static final String BAD_NETWORK = "服务器异常";
+  private static final String PARSE_ERROR = "解析服务器响应数据失败";
+  private static final String UNKNOWN_ERROR = "未知错误";
+  private static final String RESPONSE_RETURN_ERROR = "服务器返回数据失败";
+  private static final String NO_NETWORK = "网络异常，请点击重试";
 
   public BaseObserver() {
   }
@@ -96,24 +103,24 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
   private void onException(ExceptionReason reason) {
     switch (reason) {
       case CONNECT_ERROR:
-        ToastUtils.show(R.string.connect_error, Toast.LENGTH_SHORT);
+        ToastUtils.show(CONNECT_ERROR, Toast.LENGTH_SHORT);
         break;
 
       case CONNECT_TIMEOUT:
-        ToastUtils.show(R.string.connect_timeout, Toast.LENGTH_SHORT);
+        ToastUtils.show(CONNECT_TIMEOUT, Toast.LENGTH_SHORT);
         break;
 
       case BAD_NETWORK:
-        ToastUtils.show(R.string.bad_network, Toast.LENGTH_SHORT);
+        ToastUtils.show(BAD_NETWORK, Toast.LENGTH_SHORT);
         break;
 
       case PARSE_ERROR:
-        ToastUtils.show(R.string.parse_error, Toast.LENGTH_SHORT);
+        ToastUtils.show(PARSE_ERROR, Toast.LENGTH_SHORT);
         break;
 
       case UNKNOWN_ERROR:
       default:
-        ToastUtils.show(R.string.unknown_error, Toast.LENGTH_SHORT);
+        ToastUtils.show(UNKNOWN_ERROR, Toast.LENGTH_SHORT);
         break;
     }
   }
@@ -137,7 +144,7 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
   public void onFailing(T response) {
     String message = response.getMsg();
     if (TextUtils.isEmpty(message)) {
-      ToastUtils.show(R.string.response_return_error);
+      ToastUtils.show(RESPONSE_RETURN_ERROR);
     } else {
       ToastUtils.show(message);
     }

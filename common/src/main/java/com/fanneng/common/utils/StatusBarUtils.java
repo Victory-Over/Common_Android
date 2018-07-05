@@ -16,8 +16,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.fanneng.common.R;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -27,8 +25,8 @@ import java.lang.reflect.Method;
 public class StatusBarUtils {
 
     public static final int DEFAULT_STATUS_BAR_ALPHA = 0;
-    private static final int FAKE_STATUS_BAR_VIEW_ID = R.id.statusbarutil_fake_status_bar_view;
-    private static final int FAKE_TRANSLUCENT_VIEW_ID = R.id.statusbarutil_translucent_view;
+    private static final int FAKE_STATUS_BAR_VIEW_ID = 0x7f0c007d;
+    private static final int FAKE_TRANSLUCENT_VIEW_ID = 0x7f0c007e;
     private static final int TAG_KEY_HAVE_SET_OFFSET = -123;
 
     /**

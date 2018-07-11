@@ -3,13 +3,15 @@ package com.fanneng.common.utils;
 
 import android.util.Log;
 
+import com.fanneng.common.BuildConfig;
+
 
 /**
  * Log日志打印操作
  */
 public class LogUtils {
 
-  private static final boolean DEBUG = true;
+  private static final boolean DEBUG = BuildConfig.DEBUG;
 
   /**
    * 获取当前类名

@@ -1,13 +1,26 @@
 package com.fanneng.common.image.glide.config;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.support.annotation.NonNull;
+
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+
+import java.security.MessageDigest;
+
 /**
  * @author ：王文彬 on 2018/5/25 17：35
  * @describe： 圆角图片处理
- * @email：wwb199055@126.com
+ * @email： wwb199055@126.com
  */
-public class GlideCircleTransform /*extends CenterCrop*/ {
+public class GlideCircleTransform extends CenterCrop {
 
-  /*private float radius = 0f;
+  private float radius = 0f;
 
   public GlideCircleTransform() {
     this(4);
@@ -47,6 +60,6 @@ public class GlideCircleTransform /*extends CenterCrop*/ {
   @Override
   public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
 
-  }*/
+  }
 
 }

@@ -1,5 +1,20 @@
 package com.fanneng.common.image.glide.utils;
 
+import android.content.Context;
+import android.os.Looper;
+
+import com.bumptech.glide.Glide;
+import com.fanneng.common.image.glide.config.GlideConfig;
+import com.fanneng.common.utils.AppContextUtils;
+import com.fanneng.common.utils.FileUtils;
+import com.fanneng.common.utils.FormatSizeUtils;
+
+import java.io.File;
+
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.schedulers.Schedulers;
+
 /**
  * @author ：王文彬 on 2018/5/24 17：41
  * @describe： 清除Glide缓存工具类
@@ -7,19 +22,18 @@ package com.fanneng.common.image.glide.utils;
  */
 public class ClearGlideCacheUtils {
 
-  /*private static Context thisContext;
+  private Context thisContext = AppContextUtils.getContext();
 
   private ClearGlideCacheUtils() {
   }
 
   private static volatile ClearGlideCacheUtils instance;
 
-  public static ClearGlideCacheUtils getInstance(Context context) {
+  public static ClearGlideCacheUtils getInstance() {
     if (instance == null) {
       synchronized (ClearGlideCacheUtils.class) {
         if (instance == null) {
           instance = new ClearGlideCacheUtils();
-          thisContext = context;
         }
       }
     }
@@ -27,9 +41,9 @@ public class ClearGlideCacheUtils {
   }
 
 
-  *//**
+  /**
    * 获取Glide磁盘缓存大小
-   *//*
+   */
   public String getCacheSize() {
     try {
       return FormatSizeUtils.getFormatSize(FileUtils.getFolderSize(new File(thisContext.getCacheDir() + "/" +
@@ -41,20 +55,19 @@ public class ClearGlideCacheUtils {
   }
 
 
-  *//**
+  /**
    * 清除Glide磁盘缓存，自己获取缓存文件夹并删除
-   *//*
+   */
   public boolean cleanCatchDisk() {
     return FileUtils.deleteFolderFile(thisContext.getCacheDir() + "/" + GlideConfig.getMemoryCachePath(), true);
   }
 
 
-  *//**
+  /**
    * 清除图片磁盘缓存，调用Glide自带方法
-   *//*
+   */
   public boolean clearDiskCache() {
     try {
-
 
       if (Looper.myLooper() == Looper.getMainLooper()) {
         Flowable.create(emitter -> Glide.get(thisContext).clearDiskCache(), BackpressureStrategy.BUFFER)
@@ -71,9 +84,9 @@ public class ClearGlideCacheUtils {
     }
   }
 
-  *//**
+  /**
    * 清除Glide内存缓存
-   *//*
+   */
   public boolean clearCacheMemory() {
     try {
       //只能在主线程执行
@@ -86,7 +99,6 @@ public class ClearGlideCacheUtils {
     }
     return false;
   }
-*/
 
 }
 

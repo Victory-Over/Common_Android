@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import com.fanneng.common.utils.LogUtils;
+
 public class MainActivity extends AppCompatActivity {
 
   private String url = "http://zhainanba.net/wp-content/uploads/2017/08/2017-8-31-15385-5.jpg";
@@ -17,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView imageView = findViewById(R.id.iv_test);
 
+    imageView.setOnClickListener(v ->
+        LogUtils.e("--->"+BuildConfig.DEBUG+"asdfsadf"));
 
     //ClearGlideCacheUtils.getInstance().clearCacheMemory();
     //ClearGlideCacheUtils.getInstance().cleanCatchDisk();

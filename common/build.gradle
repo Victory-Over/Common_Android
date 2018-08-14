@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
-
 android {
     compileSdkVersion 27
 
@@ -52,19 +50,20 @@ dependencies {
 
 }
 
-
-uploadArchives {
-    repositories.mavenDeployer {
-        repository(url: LOCAL_REPO_URL)
-        pom.groupId = GROUP
-        pom.artifactId = POM_ARTIFACT_ID
-        pom.version = VERSION
-    }
-}
-
-task makeJar(type: Copy) {
-    from('build/intermediates/bundles/release/')
-    into(JAR_LOCAL_URL + VERSION + '/')
-    include('classes.jar')
-    rename('classes.jar', POM_ARTIFACT_ID + "-" + VERSION + ".jar")
-}
+//
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        repository(url: LOCAL_REPO_URL)
+//        pom.groupId = GROUP
+//        pom.artifactId = POM_ARTIFACT_ID
+//        pom.version = VERSION
+//    }
+//}
+//
+//task makeJar(type: Copy) {
+//    from('build/intermediates/bundles/release/')
+//    into(JAR_LOCAL_URL + VERSION + '/')
+//    include('classes.jar')
+//    rename('classes.jar', POM_ARTIFACT_ID + "-" + VERSION + ".jar")
+//}
+apply from: './nexus-push.gradle'

@@ -1,12 +1,11 @@
 package com.fanneng.common.net;
 
-import com.google.gson.JsonParseException;
-
 import android.app.Activity;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.fanneng.common.utils.ToastUtils;
+import com.google.gson.JsonParseException;
 
 import org.json.JSONException;
 import org.simple.eventbus.EventBus;
@@ -31,8 +30,8 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
 
   private Activity mContext;
   private boolean mShowLoading = false;
-  private static final String TOKEN_INVALID_TAG = "token_invalid";
-  private static final String QUIT_APP = "quit_app";
+  public static final String TOKEN_INVALID_TAG = "token_invalid";
+  public static final String QUIT_APP = "quit_app";
   private static final String CONNECT_ERROR = "网络连接失败,请检查网络";
   private static final String CONNECT_TIMEOUT = "连接超时,请稍后再试";
   private static final String BAD_NETWORK = "服务器异常";

@@ -2,10 +2,11 @@ package com.fanneng.common.net;
 
 import com.google.gson.JsonParseException;
 
-import android.app.Activity;
+import android.content.Context;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.fanneng.common.net.dialog.CustomProgressDialogUtils;
 import com.fanneng.common.utils.ToastUtils;
 
 import org.json.JSONException;
@@ -28,8 +29,8 @@ import io.reactivex.disposables.Disposable;
  */
 public abstract class BaseObserver<T extends BaseResponseEntity> implements Observer<T> {
 
-
-  private Activity mContext;
+  private CustomProgressDialogUtils progressDialogUtils;
+  private Context mContext;
   private boolean mShowLoading = false;
   public static final String TOKEN_INVALID_TAG = "token_invalid";
   public static final String QUIT_APP = "quit_app";
@@ -39,7 +40,6 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
   private static final String PARSE_ERROR = "解析服务器响应数据失败";
   private static final String UNKNOWN_ERROR = "未知错误";
   private static final String RESPONSE_RETURN_ERROR = "服务器返回数据失败";
-  private static final String NO_NETWORK = "网络异常，请点击重试";
 
   public BaseObserver() {
   }
@@ -49,19 +49,20 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
    *
    * @param context 上下文
    */
-  public BaseObserver(Activity context) {
+  public BaseObserver(Context context) {
     this.mContext = context;
     this.mShowLoading = true;
   }
 
   @Override
   public void onSubscribe(Disposable d) {
+    onRequestStart();
   }
 
 
   @Override
   public void onNext(T response) {
-
+    onRequestEnd();
     if (response.isSuccess()) {
       try {
         onSuccess(response);
@@ -82,6 +83,7 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
 
   @Override
   public void onError(Throwable e) {
+    onRequestEnd();
     if (e instanceof retrofit2.HttpException) {
       //HTTP错误
       onException(ExceptionReason.BAD_NETWORK);
@@ -127,6 +129,7 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
 
   @Override
   public void onComplete() {
+    onRequestEnd();
   }
 
   /**
@@ -175,6 +178,39 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
      * 未知错误
      */
     UNKNOWN_ERROR
+  }
+
+  /**
+   * 网络请求开始
+   */
+  private void onRequestStart() {
+    if (mShowLoading) {
+      showProgressDialog();
+    }
+  }
+
+  /**
+   * 网络请求结束
+   */
+  private void onRequestEnd() {
+    closeProgressDialog();
+  }
+
+  /**
+   * 开启Dialog
+   */
+  private void showProgressDialog() {
+    progressDialogUtils = new CustomProgressDialogUtils();
+    progressDialogUtils.showProgress(mContext, "Loading...");
+  }
+
+  /**
+   * 关闭Dialog
+   */
+  private void closeProgressDialog() {
+    if (progressDialogUtils != null) {
+      progressDialogUtils.dismissProgress();
+    }
   }
 
 }

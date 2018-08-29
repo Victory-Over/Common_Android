@@ -8,7 +8,7 @@ allprojects {
     repositories {
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven { url "https://source.enncloud.cn/FNMobileTeam/Common_Android/raw/master/common" }
+        maven { url "http://10.4.82.189:8081/repository/maven-releases/" }
     }
 }
 ```
@@ -17,7 +17,7 @@ allprojects {
 
 >>```
 dependencies {
-    implementation 'com.fanneng.android:common:1.1.2'
+    implementation 'com.fanneng.android:common:1.2.3'
 }
 ```
 
@@ -152,10 +152,19 @@ APIService.getInstance()
         });
 ```
 
->>4、如果App接口要使用token访问，则需要在登录之后设置app_token
+>>4、登录之后设置app_token
 ```
 ApiConfig.getInstance().setAppToken(app_token);
 ```
+
+>>5、监听token失效
+```
+@Subscriber(tag = BaseObserver.TOKEN_INVALID_TAG)
+private void getMessageSuccess(String msg) {
+      //退出登录
+}
+```
+
 
 <br>
 #### 2、utils工具类

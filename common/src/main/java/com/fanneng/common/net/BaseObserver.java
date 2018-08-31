@@ -51,6 +51,16 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
    *
    * @param context 上下文
    */
+  public BaseObserver(Context context, boolean isShow) {
+    this.mContext = context;
+    this.mShowLoading = isShow;
+  }
+
+  /**
+   * 如果传入上下文，那么表示您将开启自定义的进度条
+   *
+   * @param context 上下文
+   */
   public BaseObserver(Context context, boolean isShow, String msg) {
     this.mContext = context;
     this.mShowLoading = isShow;

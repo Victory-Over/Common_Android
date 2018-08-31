@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.fanneng.common.net.dialog.CustomProgressDialogUtils;
+import com.fanneng.common.utils.StringUtils;
 import com.fanneng.common.utils.ToastUtils;
 
 import org.json.JSONException;
@@ -29,6 +30,7 @@ import io.reactivex.disposables.Disposable;
  */
 public abstract class BaseObserver<T extends BaseResponseEntity> implements Observer<T> {
 
+  private String mMsg;
   private CustomProgressDialogUtils progressDialogUtils;
   private Context mContext;
   private boolean mShowLoading = false;
@@ -49,9 +51,10 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
    *
    * @param context 上下文
    */
-  public BaseObserver(Context context) {
+  public BaseObserver(Context context, boolean isShow, String msg) {
     this.mContext = context;
-    this.mShowLoading = true;
+    this.mShowLoading = isShow;
+    this.mMsg = msg;
   }
 
   @Override
@@ -201,7 +204,11 @@ public abstract class BaseObserver<T extends BaseResponseEntity> implements Obse
    */
   private void showProgressDialog() {
     progressDialogUtils = new CustomProgressDialogUtils();
-    progressDialogUtils.showProgress(mContext, "Loading...");
+    if (StringUtils.isEmpty(mMsg)) {
+      progressDialogUtils.showProgress(mContext);
+    } else {
+      progressDialogUtils.showProgress(mContext, mMsg);
+    }
   }
 
   /**

@@ -17,7 +17,7 @@ public class BaseResponseEntity implements Serializable {
 
 
   public boolean isSuccess() {
-    return 200 == code || 0 == code;
+    return 200 == code;
   }
 
   public int getCode() {

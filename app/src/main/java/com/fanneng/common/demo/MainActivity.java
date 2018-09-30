@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import com.fanneng.common.net.dialog.CustomProgressDialogUtils;
 import com.fanneng.common.utils.LogUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageView = findViewById(R.id.iv_test);
 
     imageView.setOnClickListener(v ->
-        LogUtils.e("--->"+BuildConfig.DEBUG+"asdfsadf"));
+        LogUtils.e("--->" + BuildConfig.DEBUG + "asdfsadf"));
 
     //ClearGlideCacheUtils.getInstance().clearCacheMemory();
     //ClearGlideCacheUtils.getInstance().cleanCatchDisk();
     //Glide.with(this).load(url).into(imageView);
 
-   // GlideUtils.show(this, R.mipmap.ic_launcher, url, imageView);
+    // GlideUtils.show(this, R.mipmap.ic_launcher, url, imageView);
 
     //GlideUtils.showFade(this, R.mipmap.ic_launcher, url, imageView);
 
@@ -47,5 +48,9 @@ public class MainActivity extends AppCompatActivity {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(drawable -> imageView.setBackgroundDrawable(drawable));*/
+
+    CustomProgressDialogUtils progressDialogUtils = new CustomProgressDialogUtils();
+
+    progressDialogUtils.showProgress(this,"正在加载中…");
   }
 }

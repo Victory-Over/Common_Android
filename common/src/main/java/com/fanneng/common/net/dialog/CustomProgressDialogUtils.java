@@ -52,6 +52,7 @@ public class CustomProgressDialogUtils {
     if (mProgressDialog != null && mProgressDialog.isShowing()) {
       mProgressDialog.dismiss();
       mProgressDialog.cancel();
+      mProgressDialog=null;
     }
   }
 }

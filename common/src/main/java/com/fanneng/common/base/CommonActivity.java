@@ -36,6 +36,7 @@ public class CommonActivity extends RxAppCompatActivity {
   @Override
   protected void onDestroy() {
     super.onDestroy();
+    ViewManagerUtils.getInstance().finishActivity(this);
     if (!EventBus.getDefault().getStickyEvents().isEmpty()) {
       EventBus.getDefault().getStickyEvents().clear();
     }

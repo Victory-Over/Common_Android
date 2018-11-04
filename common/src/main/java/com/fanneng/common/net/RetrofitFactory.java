@@ -36,8 +36,8 @@ public class RetrofitFactory {
     Cache cache = new Cache(cacheFile, 1024 * 1024 * 100);
 
     OkHttpClient httpClient = new OkHttpClient().newBuilder()
-        .readTimeout(ApiConfig.getInstance().getDefaultTimeout(), TimeUnit.SECONDS)
-        .connectTimeout(ApiConfig.getInstance().getDefaultTimeout(), TimeUnit.SECONDS)
+        .readTimeout(ApiConfig.getInstance().getDefaultTimeout(), TimeUnit.MILLISECONDS)
+        .connectTimeout(ApiConfig.getInstance().getDefaultTimeout(), TimeUnit.MILLISECONDS)
         .addInterceptor(LoggingInterceptor.getLoggingInterceptor())
         .addInterceptor(new HttpHeaderInterceptor())
         .addNetworkInterceptor(new HttpCacheInterceptor())

@@ -12,7 +12,7 @@ import com.fanneng.common.utils.SpUtils;
 
 public class ApiConfig {
 
-  public int default_timeout = 5000;
+  public int default_timeout = 20000;
 
   public static final String APP_TOKEN = "app_token";
 

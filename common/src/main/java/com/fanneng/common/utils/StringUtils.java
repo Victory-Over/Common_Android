@@ -69,6 +69,10 @@ public class StringUtils {
     return TextUtils.isEmpty(getString(tv));
   }
 
+  public static String null2Symbol(String args,String symbol) {
+    return isNotNull(args) ? args : symbol;
+  }
+
   private static long lastClickTime = 0;
 
   /**

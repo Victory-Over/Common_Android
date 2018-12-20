@@ -30,7 +30,7 @@ uploadArchives {
             // library的项目名
             pom.artifactId = 'common'
             // library的版本号
-            pom.version = "1.3.2"
+            pom.version = "1.3.4"
 
             description 'fanneng appsupport aar'
 

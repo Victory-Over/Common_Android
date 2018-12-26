@@ -2,13 +2,13 @@ package com.fanneng.common.demo;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.fanneng.common.net.dialog.CustomProgressDialogUtils;
 import com.fanneng.common.utils.LogUtils;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends RxAppCompatActivity {
 
   private String url = "http://zhainanba.net/wp-content/uploads/2017/08/2017-8-31-15385-5.jpg";
 

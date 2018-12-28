@@ -27,7 +27,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitFactory {
 
 
-  private final Retrofit retrofit;
+  private final Retrofit.Builder retrofit;
+  private final Retrofit build;
 
   private RetrofitFactory() {
 
@@ -49,9 +50,9 @@ public class RetrofitFactory {
     retrofit = new Retrofit.Builder()
         .client(httpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .baseUrl(ApiConfig.getInstance().getServerUrl())
-        .build();
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+
+    build = retrofit.baseUrl(ApiConfig.getInstance().getServerUrl()).build();
 
   }
 
@@ -71,6 +72,17 @@ public class RetrofitFactory {
    * @return Api实体类
    */
   public <T> T create(Class<T> clazz) {
-    return retrofit.create(clazz);
+    return build.create(clazz);
+  }
+
+  /**
+   * 根据Api接口类生成Api实体
+   *
+   * @param baseUrl baseUrl
+   * @param clazz   传入的Api接口类
+   * @return Api实体类
+   */
+  public <T> T create(String baseUrl, Class<T> clazz) {
+    return retrofit.baseUrl(baseUrl).build().create(clazz);
   }
 }

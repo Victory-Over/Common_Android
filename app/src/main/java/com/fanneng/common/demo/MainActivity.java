@@ -4,9 +4,14 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.fanneng.common.net.dialog.CustomProgressDialogUtils;
+import com.fanneng.common.demo.api.LoginService;
+import com.fanneng.common.demo.entity.UserInfo;
+import com.fanneng.common.net.BaseObserver;
 import com.fanneng.common.utils.LogUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends RxAppCompatActivity {
 
@@ -49,8 +54,23 @@ public class MainActivity extends RxAppCompatActivity {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(drawable -> imageView.setBackgroundDrawable(drawable));*/
 
-    CustomProgressDialogUtils progressDialogUtils = new CustomProgressDialogUtils();
+    /*CustomProgressDialogUtils progressDialogUtils = new CustomProgressDialogUtils();
 
-    progressDialogUtils.showProgress(this,"正在加载中…");
+    progressDialogUtils.showProgress(this,"正在加载中…");*/
+
+
+    LoginService.getInstance()
+        .postLogin("18800010001", "123456")
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .compose(this.bindToLifecycle())
+        .subscribe(new BaseObserver<UserInfo>() {
+
+          @Override
+          public void onSuccess(UserInfo response) {
+
+          }
+        });
+
   }
 }

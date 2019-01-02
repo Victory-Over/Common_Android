@@ -16,10 +16,12 @@ import io.reactivex.Observable;
 public class LoginService {
 
   private final LoginApi mLoginApi;
+  private final LoginApi mLoginApi1;
 
   private LoginService() {
 
     mLoginApi= RetrofitFactory.getInstance().create("http://www.baidu.com/",LoginApi.class);
+    mLoginApi1= RetrofitFactory.getInstance().create(LoginApi.class);
   }
 
   public static LoginService getInstance() {
@@ -38,5 +40,14 @@ public class LoginService {
     map.put("password", code);
     map.put("equipType", "android");
     return mLoginApi.postLogin(map);
+  }
+
+  //登陆接口
+  public Observable<UserInfo> postLogin1(String username, String code) {
+    Map<String, Object> map = new HashMap<>(4);
+    map.put("username", username);
+    map.put("password", code);
+    map.put("equipType", "android");
+    return mLoginApi1.postLogin(map);
   }
 }

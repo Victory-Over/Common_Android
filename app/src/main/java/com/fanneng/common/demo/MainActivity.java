@@ -23,6 +23,8 @@ public class MainActivity extends RxAppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    //AppContextUtils.init(this.getApplicationContext());
+
     ImageView imageView = findViewById(R.id.iv_test);
 
     imageView.setOnClickListener(v ->
@@ -60,6 +62,19 @@ public class MainActivity extends RxAppCompatActivity {
 
 
     LoginService.getInstance()
+        .postLogin1("18800010001", "123456")
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .compose(this.bindToLifecycle())
+        .subscribe(new BaseObserver<UserInfo>() {
+
+          @Override
+          public void onSuccess(UserInfo response) {
+
+          }
+        });
+
+    LoginService.getInstance()
         .postLogin("18800010001", "123456")
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -71,6 +86,7 @@ public class MainActivity extends RxAppCompatActivity {
 
           }
         });
+
 
   }
 }

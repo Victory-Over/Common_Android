@@ -10,7 +10,7 @@ import com.fanneng.common.base.CommonApplication;
 public class app extends CommonApplication {
   @Override
   public String setBaseUrl() {
-    return null;
+    return "http://energy-consumer-app-fnw-dev.topaas.enncloud.cn/";
   }
 
   @Override

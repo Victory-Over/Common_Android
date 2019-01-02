@@ -8,6 +8,7 @@ import com.fanneng.common.net.interceptor.HttpCacheInterceptor;
 import com.fanneng.common.net.interceptor.HttpHeaderInterceptor;
 import com.fanneng.common.net.interceptor.LoggingInterceptor;
 import com.fanneng.common.utils.AppContextUtils;
+import com.fanneng.common.utils.StringUtils;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +29,7 @@ public class RetrofitFactory {
 
 
   private final Retrofit.Builder retrofit;
-  private final Retrofit build;
+  private Retrofit build;
 
   private RetrofitFactory() {
 
@@ -52,7 +53,9 @@ public class RetrofitFactory {
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
-    build = retrofit.baseUrl(ApiConfig.getInstance().getServerUrl()).build();
+    if (StringUtils.isNotNull(ApiConfig.getInstance().getServerUrl())) {
+      build = retrofit.baseUrl(ApiConfig.getInstance().getServerUrl()).build();
+    }
 
   }
 

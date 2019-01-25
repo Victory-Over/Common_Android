@@ -46,7 +46,14 @@ public class RetrofitFactory {
         .cache(cache)
         .build();
 
-    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").serializeNulls().create();
+    Gson gson = new GsonBuilder()
+        .setDateFormat("yyyy-MM-dd HH:mm:ss")
+        .serializeNulls()
+        //.excludeFieldsWithoutExposeAnnotation()
+        //.enableComplexMapKeySerialization()
+        .setPrettyPrinting()
+        .disableHtmlEscaping()
+        .create();
 
     retrofit = new Retrofit.Builder()
         .client(httpClient)
